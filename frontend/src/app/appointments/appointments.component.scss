@@ -1,0 +1,59 @@
+.appointments-container {
+  padding: 24px;
+
+  h2 {
+    margin-bottom: 20px;
+    color: #2c3e50;
+    font-weight: 500;
+  }
+
+  .mat-form-field {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .table-container {
+    border-radius: 8px;
+    overflow: hidden;
+    
+    table {
+      width: 100%;
+    }
+
+    th.mat-header-cell {
+      background: #f8f9fa;
+      color: #2c3e50;
+      font-weight: 500;
+      padding: 16px;
+    }
+
+    td.mat-cell {
+      padding: 16px;
+    }
+
+    tr.mat-row:hover {
+      background: #f8f9fa;
+    }
+
+    // Status colors
+    .status-scheduled {
+      color: #2196f3;
+    }
+
+    .status-completed {
+      color: #4caf50;
+    }
+
+    .status-cancelled {
+      color: #f44336;
+    }
+
+    .status-no-show {
+      color: #ff9800;
+    }
+  }
+
+  mat-paginator {
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+  }
+}

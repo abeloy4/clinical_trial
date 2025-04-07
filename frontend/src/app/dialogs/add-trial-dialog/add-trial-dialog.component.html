@@ -1,0 +1,47 @@
+<div class="dialog-container">
+  <div class="dialog-header">
+    <h2>Add New Trial</h2>
+    <button mat-icon-button (click)="onClose()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <form (ngSubmit)="onSubmit()" #trialForm="ngForm">
+    <!-- Title -->
+    <mat-form-field appearance="outline">
+      <mat-label>Trial Title</mat-label>
+      <input
+        matInput
+        required
+        [(ngModel)]="trial.title"
+        name="title"
+        #title="ngModel"
+      />
+      <mat-error *ngIf="title.invalid && title.touched">Title is required</mat-error>
+    </mat-form-field>
+
+    <!-- Description -->
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        required
+        [(ngModel)]="trial.description"
+        name="description"
+        #description="ngModel"
+        rows="3"
+      ></textarea>
+      <mat-error *ngIf="description.invalid && description.touched">
+        Description is required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Buttons -->
+    <div class="dialog-actions">
+      <button mat-button type="button" (click)="onClose()">Cancel</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="trialForm.invalid">
+        Add Trial
+      </button>
+    </div>
+  </form>
+</div>

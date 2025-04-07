@@ -1,0 +1,49 @@
+<div class="dialog-container">
+  <div class="dialog-header">
+    <h2>Add New Participant</h2>
+    <button mat-icon-button (click)="onClose()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <form (ngSubmit)="onSubmit()" #participantForm="ngForm">
+    <!-- Full Name -->
+    <mat-form-field appearance="outline">
+      <mat-label>Full Name</mat-label>
+      <input
+        matInput
+        required
+        [(ngModel)]="participant.fullName"
+        name="fullName"
+        #fullName="ngModel"
+      />
+      <mat-error *ngIf="fullName.invalid && fullName.touched">Name is required</mat-error>
+    </mat-form-field>
+
+    <!-- Doctor & Trial -->
+    <mat-form-field appearance="outline">
+      <mat-label>Select Doctor & Trial</mat-label>
+      <mat-select
+        required
+        [(ngModel)]="participant.doctorTrialId"
+        name="doctorTrial"
+        #doctorTrial="ngModel"
+      >
+        <mat-option *ngFor="let dt of availableDoctorTrials" [value]="dt.doctorId">
+          {{ dt.doctorName }} - {{ dt.trial.title }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="doctorTrial.invalid && doctorTrial.touched">
+        Doctor and Trial selection is required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Buttons -->
+    <div class="dialog-actions">
+      <button mat-button type="button" (click)="onClose()">Cancel</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="participantForm.invalid">
+        Add Participant
+      </button>
+    </div>
+  </form>
+</div>

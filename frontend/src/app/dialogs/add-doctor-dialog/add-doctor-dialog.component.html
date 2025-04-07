@@ -1,0 +1,62 @@
+<div class="dialog-container">
+  <div class="dialog-header">
+    <h2>Add New Doctor</h2>
+    <button mat-icon-button (click)="onClose()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <form (ngSubmit)="onSubmit()" #doctorForm="ngForm">
+    <!-- Full Name -->
+    <mat-form-field appearance="outline">
+      <mat-label>Full Name</mat-label>
+      <input
+        matInput
+        required
+        [(ngModel)]="doctor.fullName"
+        name="fullName"
+        #fullName="ngModel"
+      />
+      <mat-error *ngIf="fullName.invalid && fullName.touched">Name is required</mat-error>
+    </mat-form-field>
+
+    <!-- Specialization -->
+    <mat-form-field appearance="outline">
+      <mat-label>Specialization</mat-label>
+      <input
+        matInput
+        required
+        [(ngModel)]="doctor.specialization"
+        name="specialization"
+        #specialization="ngModel"
+      />
+      <mat-error *ngIf="specialization.invalid && specialization.touched">
+        Specialization is required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Trial -->
+    <mat-form-field appearance="outline">
+      <mat-label>Select Trial</mat-label>
+      <mat-select
+        required
+        [(ngModel)]="doctor.trial"
+        name="trial"
+        #trial="ngModel"
+      >
+        <mat-option *ngFor="let t of availableTrials" [value]="t.id">
+          {{ t.title }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="trial.invalid && trial.touched">Trial is required</mat-error>
+    </mat-form-field>
+
+    <!-- Buttons -->
+    <div class="dialog-actions">
+      <button mat-button type="button" (click)="onClose()">Cancel</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="doctorForm.invalid">
+        Add Doctor
+      </button>
+    </div>
+  </form>
+</div>

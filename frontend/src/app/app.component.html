@@ -1,0 +1,77 @@
+<div class="app-layout">
+  <header class="app-header">
+    <div class="header-left">
+      <mat-icon class="logo">biotech</mat-icon>
+      <h1>Clinical Trial Management</h1>
+    </div>
+  
+    <button mat-icon-button class="logout-btn" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </header>
+
+  <main class="content">
+    <div class="stats-card">
+      <div class="stat-item">
+        <h3>Total Doctors</h3>
+        <div class="stat-value">{{ totalDoctors }}</div>
+        <mat-icon>medical_services</mat-icon>
+      </div>
+      <div class="stat-item">
+        <h3>Total Participants</h3>
+        <div class="stat-value">{{ totalParticipants }}</div>
+        <mat-icon>people</mat-icon>
+      </div>
+      <div class="stat-item">
+        <h3>Total Trials</h3>
+        <div class="stat-value">{{ totalTrials }}</div>
+        <mat-icon>science</mat-icon>
+      </div>
+    </div>
+
+    <div class="action-buttons">
+      <button mat-raised-button color="primary" (click)="addDoctor()">
+        <mat-icon>person_add</mat-icon>
+        Add Doctor
+      </button>
+      <button mat-raised-button color="primary" (click)="addParticipant()">
+        <mat-icon>group_add</mat-icon>
+        Add Participant
+      </button>
+      <button mat-raised-button color="primary" (click)="addTrial()">
+        <mat-icon>add_circle</mat-icon>
+        Add Trial
+      </button>
+    </div>
+
+    <div class="appointments-card">
+      <div class="card-header">
+        <h2>Upcoming Appointments</h2>
+        <button mat-button color="primary" (click)="viewAllAppointments()">
+          View All
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+      </div>
+      
+      <div class="appointments-grid">
+        <div *ngFor="let appointment of recentAppointments" class="appointment-item">
+          <div class="date-badge">
+            <span class="month">{{ appointment.date | date:'MMM' }}</span>
+            <span class="day">{{ appointment.date | date:'dd' }}</span>
+          </div>
+          <div class="appointment-details">
+            <h3>{{ appointment.patientName }}</h3>
+            <p class="doctor">Dr. {{ appointment.doctorName }}</p>
+            <p class="time">
+              <mat-icon>schedule</mat-icon>
+              {{ appointment.date | date:'shortTime' }}
+            </p>
+          </div>
+          <div class="trial-tag" [class.completed]="appointment.status === 'completed'">
+            {{ appointment.trialName }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

@@ -1,0 +1,37 @@
+<mat-card class="add-entry-container">
+  <mat-card-header>
+    <mat-card-title>Add New Entry</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form (ngSubmit)="onSubmit()" #entryForm="ngForm">
+      <mat-form-field appearance="fill">
+        <mat-label>Entry Type</mat-label>
+        <mat-select [(ngModel)]="selectedType" name="type" required>
+          <mat-option *ngFor="let type of entryTypes" [value]="type">{{type}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="newEntry.name" name="name" required>
+      </mat-form-field>
+
+      <mat-form-field *ngIf="selectedType === 'Doctor'" appearance="fill">
+        <mat-label>Specialization</mat-label>
+        <input matInput [(ngModel)]="newEntry.specialization" name="specialization">
+      </mat-form-field>
+
+      <mat-form-field *ngIf="selectedType === 'Patient'" appearance="fill">
+        <mat-label>Medical Condition</mat-label>
+        <input matInput [(ngModel)]="newEntry.condition" name="condition">
+      </mat-form-field>
+
+      <mat-form-field *ngIf="selectedType === 'Trial'" appearance="fill">
+        <mat-label>Trial Description</mat-label>
+        <textarea matInput [(ngModel)]="newEntry.description" name="description" rows="3"></textarea>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit">Add {{selectedType}}</button>
+    </form>
+  </mat-card-content>
+</mat-card>

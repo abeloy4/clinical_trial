@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "bOYZX7vkSClJaGFkeAsHFlc4+uqM4G7q02mU2beGCkc=",
+  "Source": "ClinicalTrial.Api",
+  "BasePath": "_content/ClinicalTrial.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

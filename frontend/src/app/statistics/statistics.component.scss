@@ -1,0 +1,86 @@
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  gap: 1rem;
+  transition: all 0.2s;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  .icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  .content {
+    flex: 1;
+
+    h3 {
+      margin: 0;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #6b7280;
+    }
+
+    .number {
+      margin: 0.5rem 0;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .trend {
+      margin: 0;
+      font-size: 0.875rem;
+      color: #6b7280;
+
+      &.positive {
+        color: #059669;
+      }
+
+      &.negative {
+        color: #dc2626;
+      }
+    }
+  }
+
+  &.participants .icon {
+    background-color: #f0fdfa;
+    color: #0d9488;
+  }
+
+  &.doctors .icon {
+    background-color: #eff6ff;
+    color: #3b82f6;
+  }
+
+  &.trials .icon {
+    background-color: #fef2f2;
+    color: #ef4444;
+  }
+
+  &.appointments .icon {
+    background-color: #f5f3ff;
+    color: #8b5cf6;
+  }
+}

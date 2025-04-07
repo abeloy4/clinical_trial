@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../buildMultiTargeting/ClinicalTrial.Api.props" />
+</Project>

@@ -1,0 +1,117 @@
+.dialog-container {
+  padding: 32px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  background: linear-gradient(to bottom, #ffffff, #f8fafc);
+  border-radius: 16px;
+
+  .dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -16px;
+      left: -32px;
+      right: -32px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #e2e8f0, transparent);
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 600;
+      color: #1e293b;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      &::before {
+        content: '';
+        width: 4px;
+        height: 24px;
+        background: #4338CA;
+        border-radius: 4px;
+      }
+    }
+
+    button {
+      margin-right: -12px;
+      color: #64748b;
+      transition: all 0.2s ease;
+
+      &:hover {
+        color: #dc2626;
+        transform: rotate(90deg);
+      }
+    }
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    mat-form-field {
+      width: 100%;
+
+      &.mat-mdc-form-field-has-icon-prefix .mat-mdc-text-field-wrapper {
+        padding-left: 0;
+      }
+
+      .mat-mdc-form-field-flex {
+        background-color: #ffffff;
+        border-radius: 12px;
+        transition: all 0.2s ease;
+      }
+
+      &.mat-focused .mat-mdc-form-field-flex {
+        box-shadow: 0 4px 6px -1px rgb(67 56 202 / 0.1), 0 2px 4px -2px rgb(67 56 202 / 0.1);
+      }
+    }
+
+    .dialog-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 16px;
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid #e2e8f0;
+
+      button {
+        min-width: 120px;
+        padding: 8px 24px;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+
+        &[color="primary"] {
+          background-color: #4338CA;
+
+          &:hover:not([disabled]) {
+            background-color: #3730a3;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px -1px rgba(67, 56, 202, 0.1),
+                      0 2px 4px -2px rgba(67, 56, 202, 0.1);
+          }
+
+          &[disabled] {
+            opacity: 0.7;
+            cursor: not-allowed;
+          }
+        }
+
+        &:not([color="primary"]) {
+          &:hover {
+            background-color: #f1f5f9;
+          }
+        }
+      }
+    }
+  }
+}
