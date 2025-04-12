@@ -1,0 +1,23 @@
+<h2>All Participants</h2>
+
+<mat-list>
+  <mat-list-item *ngFor="let participant of participants">
+    <div class="participant-info">
+      <div class="icon">
+        <mat-icon>person</mat-icon>
+      </div>
+      <div class="details">
+        <div class="name">{{ participant.fullName }}</div>
+        <div class="metadata">
+          <span>{{ participant.gender }}</span>
+          <span class="dot"></span>
+          <span>{{ participant.dateOfBirth | date:'mediumDate' }}</span>
+        </div>
+      </div>
+    </div>
+  </mat-list-item>
+</mat-list>
+
+<div class="actions">
+  <button mat-flat-button color="primary" (click)="close()">Close</button>
+</div>

@@ -1,0 +1,19 @@
+<h2>All Doctors</h2>
+
+<mat-list>
+  <mat-list-item *ngFor="let doctor of doctors">
+    <div class="doctor-info">
+      <div class="icon">
+        <mat-icon>medical_services</mat-icon>
+      </div>
+      <div class="details">
+        <div class="name">{{ doctor.fullName }}</div>
+        <div class="specialization">{{ doctor.specialization }}</div>
+      </div>
+    </div>
+  </mat-list-item>
+</mat-list>
+
+<div class="actions">
+  <button mat-flat-button color="primary" (click)="close()">Close</button>
+</div>

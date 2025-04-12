@@ -1,0 +1,72 @@
+:host {
+  display: block;
+  padding: 24px;
+  max-width: 600px;
+}
+
+h2 {
+  margin: 0 0 24px;
+  color: #1f2937;
+  font-size: 1.5rem;
+  font-weight: 600;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 12px;
+}
+
+.mat-mdc-list {
+  padding: 0;
+  border-radius: 8px;
+  background: #f9fafb;
+}
+
+.mat-mdc-list-item {
+  margin: 8px 0;
+  border-radius: 6px;
+  background: white;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s;
+  
+  &:hover {
+    background: #f3f4f6;
+    transform: translateX(4px);
+  }
+}
+
+.doctor-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  width: 100%;
+
+  .name {
+    font-weight: 500;
+    color: #1f2937;
+  }
+
+  .specialization {
+    color: #6b7280;
+    font-size: 0.875rem;
+  }
+
+  .icon {
+    color: #4f46e5;
+    background: #eef2ff;
+    padding: 8px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.actions {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+
+  button {
+    min-width: 100px;
+  }
+}

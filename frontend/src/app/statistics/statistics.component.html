@@ -1,5 +1,5 @@
 <div class="stats-grid">
-  <div class="stat-card participants">
+  <div class="stat-card participants" (click)="viewParticipants()" role="button" tabindex="0">
     <div class="icon">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
@@ -15,7 +15,7 @@
     </div>
   </div>
 
-  <div class="stat-card doctors">
+  <div class="stat-card doctors" (click)="viewDoctors()" role="button" tabindex="0">
     <div class="icon">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
@@ -31,7 +31,7 @@
     </div>
   </div>
 
-  <div class="stat-card trials">
+  <div class="stat-card trials" (click)="viewTrials()" role="button" tabindex="0">
     <div class="icon">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M10 2v7.31M14 9.3V2M8.5 2h7M14 21.6L10 17l4-4.6M6 12h4m4 0h4"></path>

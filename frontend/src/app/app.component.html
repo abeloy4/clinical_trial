@@ -12,17 +12,18 @@
 
   <main class="content">
     <div class="stats-card">
-      <div class="stat-item">
+      <div class="stat-item" (click)="viewDoctors()">
         <h3>Total Doctors</h3>
         <div class="stat-value">{{ totalDoctors }}</div>
         <mat-icon>medical_services</mat-icon>
+
       </div>
-      <div class="stat-item">
+      <div class="stat-item" (click)="viewParticipants()">
         <h3>Total Participants</h3>
         <div class="stat-value">{{ totalParticipants }}</div>
         <mat-icon>people</mat-icon>
       </div>
-      <div class="stat-item">
+      <div class="stat-item" (click)="viewTrials()">
         <h3>Total Trials</h3>
         <div class="stat-value">{{ totalTrials }}</div>
         <mat-icon>science</mat-icon>

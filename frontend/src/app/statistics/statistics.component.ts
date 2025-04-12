@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { CommonModule, DatePipe } from '@angular/common';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { Doctor, Trial, Participant, ApiAppointment } from '../models/api.types';
+import { ViewDoctorsDialogComponent } from '../dialogs/view-doctors-dialog/view-doctors-dialog.component';
+import { ViewParticipantsDialogComponent } from '../dialogs/view-participants-dialog/view-participants-dialog.component';
+import { ViewTrialsDialogComponent } from '../dialogs/view-trials-dialog/view-trials-dialog.component';
 
 interface Statistics {
   totalParticipants: number;
@@ -19,7 +23,7 @@ interface Statistics {
   templateUrl: './statistics.component.html',
   styleUrls: ['./statistics.component.scss'],
   standalone: true,
-  imports: [CommonModule, DatePipe]
+  imports: [CommonModule, DatePipe, MatDialogModule]
 })
 export class StatisticsComponent implements OnInit {
   statistics: Statistics = {
@@ -33,10 +37,34 @@ export class StatisticsComponent implements OnInit {
     nextAppointment: new Date()
   };
 
-  constructor(private apiService: ApiService) {}
+  constructor(
+    private apiService: ApiService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.loadStatistics();
+  }
+
+  viewDoctors(): void {
+    this.dialog.open(ViewDoctorsDialogComponent, {
+      width: '600px',
+      maxHeight: '80vh'
+    });
+  }
+
+  viewParticipants(): void {
+    this.dialog.open(ViewParticipantsDialogComponent, {
+      width: '600px',
+      maxHeight: '80vh'
+    });
+  }
+
+  viewTrials(): void {
+    this.dialog.open(ViewTrialsDialogComponent, {
+      width: '600px',
+      maxHeight: '80vh'
+    });
   }
 
   private loadStatistics(): void {

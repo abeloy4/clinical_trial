@@ -1,0 +1,19 @@
+<h2>All Trials</h2>
+
+<mat-list>
+  <mat-list-item *ngFor="let trial of trials">
+    <div class="trial-info">
+      <div class="icon">
+        <mat-icon>science</mat-icon>
+      </div>
+      <div class="details">
+        <div class="name">{{ trial.name }}</div>
+        <div class="description">{{ trial.description }}</div>
+      </div>
+    </div>
+  </mat-list-item>
+</mat-list>
+
+<div class="actions">
+  <button mat-flat-button color="primary" (click)="close()">Close</button>
+</div>

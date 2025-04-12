@@ -9,6 +9,10 @@ import { AddParticipantDialogComponent } from './dialogs/add-participant-dialog/
 import { AddTrialDialogComponent } from './dialogs/add-trial-dialog/add-trial-dialog.component';
 
 import { ApiService } from './services/api.service';
+import { ViewAllDoctorsDialogComponent } from './dialogs/view-doctors-dialog/view-doctors-dialog.component';
+import { ViewParticipantsDialogComponent } from './dialogs/view-participants-dialog/view-participants-dialog.component';
+import { ViewTrialsDialogComponent } from './dialogs/view-trials-dialog/view-trials-dialog.component';
+
 
 @Component({
   selector: 'app-root',
@@ -121,6 +125,27 @@ export class AppComponent {
           }
         });
       }
+    });
+  }
+
+  viewDoctors(): void {
+    this.dialog.open(ViewAllDoctorsDialogComponent, {
+      width: '500px',
+      panelClass: 'modern-dialog'
+    });
+  }
+
+  viewParticipants(): void {
+    this.dialog.open(ViewParticipantsDialogComponent, {
+      width: '500px',
+      panelClass: 'custom-dialog'
+    });
+  }
+
+  viewTrials(): void {
+    this.dialog.open(ViewTrialsDialogComponent, {
+      width: '500px',
+      panelClass: 'custom-dialog'
     });
   }
   
