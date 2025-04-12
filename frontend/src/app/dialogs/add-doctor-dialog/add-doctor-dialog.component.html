@@ -40,16 +40,16 @@
       <mat-label>Select Trial</mat-label>
       <mat-select
         required
-        [(ngModel)]="doctor.trial"
-        name="trial"
-        #trial="ngModel"
+        [(ngModel)]="doctor.trialId"
+        name="trialId"
+        #trialId="ngModel"
       >
         <mat-option *ngFor="let t of availableTrials" [value]="t.id">
-          {{ t.title }}
+          {{ t.name }}
         </mat-option>
       </mat-select>
-      <mat-error *ngIf="trial.invalid && trial.touched">Trial is required</mat-error>
-    </mat-form-field>
+      <mat-error *ngIf="trialId.invalid && trialId.touched">Trial is required</mat-error>
+    </mat-form-field>    
 
     <!-- Buttons -->
     <div class="dialog-actions">

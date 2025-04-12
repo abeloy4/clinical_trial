@@ -13,11 +13,11 @@
       <input
         matInput
         required
-        [(ngModel)]="trial.title"
-        name="title"
-        #title="ngModel"
+        [(ngModel)]="trial.name"
+        name="name"
+        #name="ngModel"
       />
-      <mat-error *ngIf="title.invalid && title.touched">Title is required</mat-error>
+      <mat-error *ngIf="name.invalid && name.touched">Name is required</mat-error>
     </mat-form-field>
 
     <!-- Description -->
@@ -34,6 +34,30 @@
       <mat-error *ngIf="description.invalid && description.touched">
         Description is required
       </mat-error>
+    </mat-form-field>
+
+    <!-- Start Date -->
+    <mat-form-field appearance="outline">
+      <mat-label>Start Date</mat-label>
+      <input
+        matInput
+        type="date"
+        [(ngModel)]="trial.startDate"
+        name="startDate"
+        required
+      />
+    </mat-form-field>
+
+    <!-- End Date -->
+    <mat-form-field appearance="outline">
+      <mat-label>End Date</mat-label>
+      <input
+        matInput
+        type="date"
+        [(ngModel)]="trial.endDate"
+        name="endDate"
+        required
+      />
     </mat-form-field>
 
     <!-- Buttons -->

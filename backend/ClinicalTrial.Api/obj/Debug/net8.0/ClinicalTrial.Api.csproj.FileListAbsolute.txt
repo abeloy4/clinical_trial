@@ -159,3 +159,4 @@
 /Users/student/Desktop/Clinical_Trial/backend/ClinicalTrial.Api/obj/Debug/net8.0/ClinicalTrial.Api.pdb
 /Users/student/Desktop/Clinical_Trial/backend/ClinicalTrial.Api/obj/Debug/net8.0/ClinicalTrial.Api.genruntimeconfig.cache
 /Users/student/Desktop/Clinical_Trial/backend/ClinicalTrial.Api/obj/Debug/net8.0/ref/ClinicalTrial.Api.dll
+/Users/student/Desktop/clinical_trial/backend/ClinicalTrial.Api/obj/Debug/net8.0/ClinicalTrial.Api.sourcelink.json

@@ -1,17 +1,20 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
+
 import { AddDoctorDialogComponent } from './dialogs/add-doctor-dialog/add-doctor-dialog.component';
 import { AddParticipantDialogComponent } from './dialogs/add-participant-dialog/add-participant-dialog.component';
 import { AddTrialDialogComponent } from './dialogs/add-trial-dialog/add-trial-dialog.component';
-import { CommonModule } from '@angular/common';
+
+import { ApiService } from './services/api.service';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  standalone: true,
   imports: [
     CommonModule,
     MatIconModule,
@@ -20,92 +23,115 @@ import { CommonModule } from '@angular/common';
   ]
 })
 export class AppComponent {
-  // Mock data - replace with actual data from your service
-  totalDoctors = 12;
-  totalParticipants = 156;
-  totalTrials = 8;
+  totalDoctors = 0;
+  totalParticipants = 0;
+  totalTrials = 0;
 
-  recentAppointments = [
-    {
-      date: new Date('2025-04-02T10:00:00'),
-      patientName: 'John Smith',
-      doctorName: 'Sarah Wilson',
-      trialName: 'Cancer Research Trial A',
-      status: 'upcoming'
-    },
-    {
-      date: new Date('2025-04-02T14:30:00'),
-      patientName: 'Emma Johnson',
-      doctorName: 'Michael Brown',
-      trialName: 'Diabetes Treatment Study',
-      status: 'upcoming'
-    },
-    {
-      date: new Date('2025-04-03T09:15:00'),
-      patientName: 'Robert Davis',
-      doctorName: 'Jennifer Lee',
-      trialName: 'Cardiovascular Trial B',
-      status: 'upcoming'
-    },
-    {
-      date: new Date('2025-04-03T11:45:00'),
-      patientName: 'Maria Garcia',
-      doctorName: 'David Chen',
-      trialName: 'Alzheimer\'s Research',
-      status: 'upcoming'
-    }
-  ];
+  constructor(
+    private dialog: MatDialog,
+    private apiService: ApiService
+  ) {}
 
-  constructor(private dialog: MatDialog) {}
+  ngOnInit(): void {
+    this.loadStatistics();
+  }
 
-  addDoctor() {
+  // Load counts for doctors, participants, and trials
+  loadStatistics(): void {
+    this.apiService.getDoctors().subscribe(docs => {
+      this.totalDoctors = docs.length;
+      console.log('✅ Doctors loaded:', docs);
+    });
+  
+    this.apiService.getParticipants().subscribe(participants => {
+      this.totalParticipants = participants.length;
+      console.log('✅ Participants loaded:', participants);
+    });
+  
+    this.apiService.getTrials().subscribe({
+      next: (trials) => {
+        console.log('✅ Trials loaded:', trials);
+        this.totalTrials = trials.length;
+      },
+      error: (err) => console.error('❌ Error loading trials:', err)
+    });
+  }  
+
+  // Dialog openers
+  addDoctor(): void {
     const dialogRef = this.dialog.open(AddDoctorDialogComponent, {
       width: '500px',
       panelClass: 'custom-dialog'
     });
-
+  
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log('New doctor:', result);
-        // TODO: Implement actual doctor creation
+        this.apiService.addDoctor(result).subscribe({
+          next: (response) => {
+            console.log('✅ Doctor added to backend:', response);
+            this.loadStatistics(); // optionally reload counts
+          },
+          error: (err) => {
+            console.error('❌ Failed to add doctor:', err);
+          }
+        });
       }
     });
-  }
+  }  
 
-  addParticipant() {
+  addParticipant(): void {
     const dialogRef = this.dialog.open(AddParticipantDialogComponent, {
       width: '500px',
       panelClass: 'custom-dialog'
     });
-
+  
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log('New participant:', result);
-        // TODO: Implement actual participant creation
+        this.apiService.addParticipant(result).subscribe({
+          next: (response) => {
+            console.log('✅ Participant added to backend:', response);
+            this.loadStatistics(); // optional refresh
+          },
+          error: (err) => {
+            console.error('❌ Failed to add participant:', err);
+          }
+        });
       }
     });
-  }
+  }  
 
-  addTrial() {
+  addTrial(): void {
     const dialogRef = this.dialog.open(AddTrialDialogComponent, {
       width: '500px',
       panelClass: 'custom-dialog'
     });
-
+  
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log('New trial:', result);
-        // TODO: Implement actual trial creation
+        this.apiService.addTrial(result).subscribe({
+          next: (response) => {
+            console.log('✅ Trial added to backend:', response);
+            this.loadStatistics(); // refresh stats like totalTrials
+          },
+          error: (err) => {
+            console.error('❌ Failed to add trial:', err);
+          }
+        });
       }
     });
   }
+  
 
-  viewAllAppointments() {
-    // TODO: Implement view all appointments
+  // Navigation / Utility Actions
+  viewAllAppointments(): void {
+    // TODO: Implement view all appointments logic
     console.log('View all appointments clicked');
   }
 
-  logout() {
+  logout(): void {
     // TODO: Implement logout logic
     console.log('Logout clicked');
   }

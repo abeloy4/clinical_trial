@@ -8,35 +8,39 @@
 
   <form (ngSubmit)="onSubmit()" #participantForm="ngForm">
     <!-- Full Name -->
-    <mat-form-field appearance="outline">
+    <mat-form-field>
       <mat-label>Full Name</mat-label>
-      <input
-        matInput
-        required
-        [(ngModel)]="participant.fullName"
-        name="fullName"
-        #fullName="ngModel"
-      />
-      <mat-error *ngIf="fullName.invalid && fullName.touched">Name is required</mat-error>
+      <input matInput [(ngModel)]="participant.fullName" name="fullName" required />
     </mat-form-field>
-
-    <!-- Doctor & Trial -->
-    <mat-form-field appearance="outline">
-      <mat-label>Select Doctor & Trial</mat-label>
-      <mat-select
-        required
-        [(ngModel)]="participant.doctorTrialId"
-        name="doctorTrial"
-        #doctorTrial="ngModel"
-      >
-        <mat-option *ngFor="let dt of availableDoctorTrials" [value]="dt.doctorId">
-          {{ dt.doctorName }} - {{ dt.trial.title }}
+    
+    <mat-form-field>
+      <mat-label>Date of Birth</mat-label>
+      <input matInput type="date" [(ngModel)]="participant.dateOfBirth" name="dateOfBirth" required />
+    </mat-form-field>
+    
+    <mat-form-field>
+      <mat-label>Gender</mat-label>
+      <mat-select [(ngModel)]="participant.gender" name="gender" required>
+        <mat-option value="Male">Male</mat-option>
+        <mat-option value="Female">Female</mat-option>
+        <mat-option value="Other">Other</mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    <mat-form-field>
+      <mat-label>Medical History</mat-label>
+      <textarea matInput [(ngModel)]="participant.medicalHistory" name="medicalHistory" required></textarea>
+    </mat-form-field>
+    
+    <mat-form-field>
+      <mat-label>Select Trial</mat-label>
+      <mat-select [(ngModel)]="participant.trialId" name="trialId" required>
+        <mat-option *ngFor="let t of availableTrials" [value]="t.id">
+          {{ t.name }}
         </mat-option>
       </mat-select>
-      <mat-error *ngIf="doctorTrial.invalid && doctorTrial.touched">
-        Doctor and Trial selection is required
-      </mat-error>
     </mat-form-field>
+        
 
     <!-- Buttons -->
     <div class="dialog-actions">

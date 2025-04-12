@@ -20,8 +20,8 @@ public class Participant
     public string? MedicalHistory { get; set; }
 
     // Navigation properties
-    public int DoctorId { get; set; }
-    public Doctor? Doctor { get; set; }
+    public int? DoctorId { get; set; }public Doctor? Doctor { get; set; }
+
 
     public int TrialId { get; set; }
     public Trial? Trial { get; set; }

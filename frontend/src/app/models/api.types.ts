@@ -6,7 +6,7 @@ export interface Doctor {
 
 export interface Trial {
   id: number;
-  title: string;
+  name: string;
   description: string;
   startDate: string;
   endDate?: string;

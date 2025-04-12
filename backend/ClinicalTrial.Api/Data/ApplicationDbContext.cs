@@ -30,7 +30,9 @@ public class ApplicationDbContext : DbContext
             .HasOne(p => p.Doctor)
             .WithMany(d => d.Participants)
             .HasForeignKey(p => p.DoctorId)
-            .OnDelete(DeleteBehavior.Restrict);
+            .OnDelete(DeleteBehavior.Restrict)
+    .IsRequired(false); // ✅ optional
+
 
         // Configure one-to-many relationship between Trial and Participant
         modelBuilder.Entity<Participant>()

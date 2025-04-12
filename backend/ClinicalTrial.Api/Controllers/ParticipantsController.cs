@@ -27,7 +27,6 @@ public class ParticipantsController : ControllerBase
                 DateOfBirth = p.DateOfBirth,
                 Gender = p.Gender,
                 MedicalHistory = p.MedicalHistory,
-                DoctorId = p.DoctorId,
                 TrialId = p.TrialId
             }).ToListAsync();
     }
@@ -47,31 +46,37 @@ public class ParticipantsController : ControllerBase
             DateOfBirth = p.DateOfBirth,
             Gender = p.Gender,
             MedicalHistory = p.MedicalHistory,
-            DoctorId = p.DoctorId,
             TrialId = p.TrialId
         };
     }
 
 
     [HttpPost]
-    public async Task<ActionResult<ParticipantDTO>> PostParticipant(ParticipantDTO dto)
+public async Task<ActionResult<ParticipantDTO>> PostParticipant(ParticipantDTO dto)
+{
+    // ✅ Check if the selected TrialId exists in the database
+    var trial = await _context.Trials.FindAsync(dto.TrialId)!;
+    if (trial == null)
     {
-        var p = new Participant
-        {
-            FullName = dto.FullName,
-            DateOfBirth = dto.DateOfBirth,
-            Gender = dto.Gender,
-            MedicalHistory = dto.MedicalHistory,
-            DoctorId = dto.DoctorId,
-            TrialId = dto.TrialId
-        };
-
-        _context.Participants.Add(p);
-        await _context.SaveChangesAsync();
-
-        dto.Id = p.Id;
-        return CreatedAtAction(nameof(GetParticipant), new { id = p.Id }, dto);
+        return BadRequest("Trial not found.");
     }
+
+    var p = new Participant
+    {
+        FullName = dto.FullName,
+        DateOfBirth = dto.DateOfBirth,
+        Gender = dto.Gender,
+        MedicalHistory = dto.MedicalHistory,
+        TrialId = dto.TrialId
+    };
+    
+    _context.Participants.Add(p);
+    await _context.SaveChangesAsync();
+
+    dto.Id = p.Id;
+    return CreatedAtAction(nameof(GetParticipant), new { id = p.Id }, dto);
+}
+
 
 
    [HttpPut("{id}")]
@@ -86,7 +91,6 @@ public class ParticipantsController : ControllerBase
         participant.DateOfBirth = dto.DateOfBirth;
         participant.Gender = dto.Gender;
         participant.MedicalHistory = dto.MedicalHistory;
-        participant.DoctorId = dto.DoctorId;
         participant.TrialId = dto.TrialId;
 
         await _context.SaveChangesAsync();

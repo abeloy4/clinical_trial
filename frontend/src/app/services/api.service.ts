@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Doctor, Trial, Participant, ApiAppointment } from '../models/api.types';
 import { environment } from '../../environments/environment';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -13,30 +14,41 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   // Doctors
-  getDoctors(): Observable<Doctor[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/doctors`);
+  getDoctors() {
+    return this.http.get<any>(`${this.apiUrl}/doctors`).pipe(
+      map(res => Array.isArray(res) ? res : res.$values ?? [])
+    );
   }
 
-  addDoctor(doctor: Doctor): Observable<Doctor> {
-    return this.http.post<any>(`${this.apiUrl}/doctors`, doctor);
+  addDoctor(doctor: any) {
+    return this.http.post(`${this.apiUrl}/doctors`, doctor);
   }
 
   // Trials
   getTrials(): Observable<Trial[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/trials`);
+    return this.http.get<any>(`${this.apiUrl}/trials`).pipe(
+      map(res => Array.isArray(res) ? res : res.$values ?? [])
+    );
   }
+  
+  
+  // getTrials(): Observable<Trial[]> {
+  //   return this.http.get<any[]>(`${this.apiUrl}/trials`);
+  // }
 
   addTrial(trial: Trial): Observable<Trial> {
     return this.http.post<any>(`${this.apiUrl}/trials`, trial);
   }
 
   // Participants
-  getParticipants(): Observable<Participant[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/participants`);
+  getParticipants() {
+    return this.http.get<any>(`${this.apiUrl}/participants`).pipe(
+      map(res => Array.isArray(res) ? res : res.$values ?? [])
+    );
   }
 
-  addParticipant(participant: Participant): Observable<Participant> {
-    return this.http.post<any>(`${this.apiUrl}/participants`, participant);
+  addParticipant(participant: any) {
+    return this.http.post(`${this.apiUrl}/participants`, participant);
   }
 
   // Appointments

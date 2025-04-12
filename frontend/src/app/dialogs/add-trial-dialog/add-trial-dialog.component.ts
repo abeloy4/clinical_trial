@@ -24,9 +24,12 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class AddTrialDialogComponent {
   trial = {
-    title: '',
-    description: ''
+    name: '',
+    description: '',
+    startDate: new Date().toISOString().split('T')[0],
+    endDate: new Date().toISOString().split('T')[0]
   };
+  
 
   constructor(private dialogRef: MatDialogRef<AddTrialDialogComponent>) {}
 
@@ -35,8 +38,10 @@ export class AddTrialDialogComponent {
   }
 
   onSubmit(): void {
-    if (this.trial.title && this.trial.description) {
+    if (this.trial.name && this.trial.description) {
       this.dialogRef.close(this.trial);
+      this.trial = { name: '', description: '', startDate: '', endDate: '' };
     }
   }
+  
 }
