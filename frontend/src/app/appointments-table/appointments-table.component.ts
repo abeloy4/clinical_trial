@@ -8,22 +8,15 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { AddAppointmentDialogComponent } from '../dialogs/add-appointment-dialog/add-appointment-dialog.component';
+import { Appointment, DisplayAppointment } from '../models/api.types';
 
-export interface Appointment {
-  participant: string;
-  trial: string;
-  doctor: string;
-  date: Date;
-  status: string;
-}
 
-const APPOINTMENTS_DATA: Appointment[] = [
-  { participant: 'John Smith', trial: 'Diabetes Type 2', doctor: 'Dr. Sarah Wilson', date: new Date('2025-04-01'), status: 'Scheduled' },
-  { participant: 'Emma Davis', trial: 'Cardiovascular Study', doctor: 'Dr. Michael Chen', date: new Date('2025-04-02'), status: 'Confirmed' },
-  { participant: 'Robert Brown', trial: 'Arthritis Trial', doctor: 'Dr. Emily Taylor', date: new Date('2025-04-03'), status: 'Pending' },
-  { participant: 'Maria Garcia', trial: 'Cancer Research', doctor: 'Dr. James Wilson', date: new Date('2025-04-04'), status: 'Cancelled' },
-  { participant: 'David Lee', trial: 'Diabetes Type 2', doctor: 'Dr. Sarah Wilson', date: new Date('2025-04-05'), status: 'Scheduled' }
-];
+
+const APPOINTMENTS_DATA: DisplayAppointment[] = [];
 
 @Component({
   selector: 'app-appointments-table',
@@ -36,19 +29,82 @@ const APPOINTMENTS_DATA: Appointment[] = [
     MatSortModule,
     MatFormFieldModule,
     MatInputModule,
+    MatButtonModule,
+    MatIconModule,
     DatePipe
   ]
 })
 export class AppointmentsTableComponent implements AfterViewInit {
-  displayedColumns: string[] = ['participant', 'trial', 'doctor', 'date', 'status'];
-  dataSource = new MatTableDataSource<Appointment>(APPOINTMENTS_DATA);
+  displayedColumns: string[] = ['participant', 'trial', 'doctor', 'appointmentDate', 'status'];
+  dataSource = new MatTableDataSource<DisplayAppointment>(APPOINTMENTS_DATA);
 
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
+  constructor(
+    private dialog: MatDialog,
+    //private apiService: ApiService
+  ) {}
+
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
+    this.loadAppointments();
+  }
+
+  loadAppointments() {
+    // Dummy appointments data
+    const appointments: DisplayAppointment[] = [
+      {
+        participant: { fullName: 'John Smith' },
+        trial: { name: 'Cancer Treatment Trial' },
+        doctor: { fullName: 'Dr. Sarah Wilson' },
+        appointmentDate: new Date('2025-04-15T10:00:00'),
+        status: 'scheduled'
+      },
+      {
+        participant: { fullName: 'Mary Johnson' },
+        trial: { name: 'Diabetes Study' },
+        doctor: { fullName: 'Dr. Michael Brown' },
+        appointmentDate: new Date('2025-04-16T14:30:00'),
+        status: 'scheduled'
+      },
+      {
+        participant: { fullName: 'Robert Davis' },
+        trial: { name: 'Heart Disease Trial' },
+        doctor: { fullName: 'Dr. Emily Chen' },
+        appointmentDate: new Date('2025-04-17T09:15:00'),
+        status: 'scheduled'
+      },
+      {
+        participant: { fullName: 'Patricia Miller' },
+        trial: { name: 'Arthritis Study' },
+        doctor: { fullName: 'Dr. James Taylor' },
+        appointmentDate: new Date('2025-04-18T11:45:00'),
+        status: 'scheduled'
+      },
+      {
+        participant: { fullName: 'Michael Wilson' },
+        trial: { name: 'Alzheimer Study' },
+        doctor: { fullName: 'Dr. Lisa Anderson' },
+        appointmentDate: new Date('2025-04-19T13:00:00'),
+        status: 'scheduled'
+      }
+    ];
+
+    this.dataSource.data = appointments;
+  }
+
+  openAddAppointmentDialog() {
+    const dialogRef = this.dialog.open(AddAppointmentDialogComponent, {
+      width: '500px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.loadAppointments();
+      }
+    });
   }
 
   applyFilter(event: Event) {

@@ -102,6 +102,205 @@
     margin-bottom: 32px;
 
     button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 24px;
+      font-size: 14px;
+      font-weight: 500;
+      background-color: white;
+      color: #4338ca;
+      border: 2px solid #4338ca;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      letter-spacing: 0.3px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      position: relative;
+      overflow: hidden;
+      height: 36px;
+      text-transform: uppercase;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #4338ca;
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.3s ease;
+        z-index: 0;
+      }
+
+      &:hover {
+        color: white;
+        box-shadow: 0 4px 8px rgba(67, 56, 202, 0.15);
+        transform: translateY(-1px);
+
+        &::before {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+
+        mat-icon {
+          color: white;
+        }
+      }
+
+      mat-icon {
+        font-size: 16px;
+        width: 16px;
+        height: 16px;
+        color: #4338ca;
+        position: relative;
+        z-index: 1;
+        transition: color 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      span {
+        position: relative;
+        z-index: 1;
+        display: inline-flex;
+        align-items: center;
+        line-height: 16px;
+      }
+    }
+  }
+
+  .appointments-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 32px;
+    margin-top: 32px;
+    padding: 8px;
+
+    > div {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      position: relative;
+      overflow: hidden;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: #1976d2;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+        border-color: #e0e0e0;
+
+        &::before {
+          opacity: 1;
+        }
+      }
+
+      .date-badge {
+        background: #f5f5f5;
+        border: none;
+        border-radius: 4px;
+        padding: 8px 16px;
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        align-self: flex-start;
+
+        .month {
+          color: #64748b;
+          font-size: 13px;
+          text-transform: uppercase;
+          letter-spacing: 1.5px;
+          margin-bottom: 6px;
+          font-weight: 500;
+        }
+
+        .day {
+          color: #1e293b;
+          font-size: 28px;
+          font-weight: 600;
+          line-height: 1;
+          font-weight: 600;
+        }
+      }
+
+      .appointment-details {
+        h3 {
+          color: #1e293b;
+          font-size: 20px;
+          font-weight: 600;
+          margin: 0 0 10px 0;
+          letter-spacing: 0.4px;
+          line-height: 1.3;
+        }
+
+        .doctor {
+          color: #64748b;
+          font-size: 15px;
+          margin: 0 0 10px 0;
+          font-style: italic;
+          letter-spacing: 0.3px;
+          color: #475569;
+        }
+
+        .time {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          color: #64748b;
+          font-size: 14px;
+          margin: 0;
+
+          mat-icon {
+            font-size: 16px;
+            width: 16px;
+            height: 16px;
+            color: #4338ca;
+          }
+        }
+      }
+
+      .trial-tag {
+        background: #f5f5f5;
+        color: #2c3e50;
+        padding: 6px 12px;
+        border-radius: 4px;
+        font-size: 13px;
+        align-self: flex-start;
+        letter-spacing: 0.3px;
+        border: none;
+        font-weight: 500;
+
+        &.completed {
+          background: #e8f5e9;
+          color: #2e7d32;
+        }
+      }
+    }
+    margin-bottom: 32px;
+
+    button {
       display: flex;
       align-items: center;
       justify-content: center;

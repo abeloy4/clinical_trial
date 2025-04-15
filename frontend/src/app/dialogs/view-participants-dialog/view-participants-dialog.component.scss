@@ -20,6 +20,8 @@ h2 {
 }
 
 .mat-mdc-list-item {
+  position: relative;
+  overflow: visible !important;
   margin: 8px 0;
   border-radius: 6px;
   background: white;
@@ -27,6 +29,11 @@ h2 {
   transition: all 0.2s;
   
   &:hover {
+    .delete-button {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
     background: #f3f4f6;
     transform: translateX(4px);
   }
@@ -64,13 +71,28 @@ h2 {
     display: flex;
     gap: 8px;
     align-items: center;
+    margin-top: 2px;
 
     .dot {
-      height: 4px;
-      width: 4px;
-      background: #d1d5db;
+      width: 3px;
+      height: 3px;
+      background: #9ca3af;
       border-radius: 50%;
     }
+  }
+}
+
+.delete-button {
+  opacity: 0;
+  transform: translateX(10px);
+  transition: all 0.2s ease;
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  margin-top: -20px;
+  
+  &:hover {
+    background-color: rgba(244, 67, 54, 0.1);
   }
 }
 

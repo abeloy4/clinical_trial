@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../services/api.service';
+import { ApiService, Appointment } from '../services/api.service';
 import { CommonModule, DatePipe } from '@angular/common';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { Doctor, Trial, Participant, ApiAppointment } from '../models/api.types';
+import { Doctor, Trial, Participant } from '../models/api.types';
 import { ViewDoctorsDialogComponent } from '../dialogs/view-doctors-dialog/view-doctors-dialog.component';
 import { ViewParticipantsDialogComponent } from '../dialogs/view-participants-dialog/view-participants-dialog.component';
 import { ViewTrialsDialogComponent } from '../dialogs/view-trials-dialog/view-trials-dialog.component';
@@ -102,20 +102,20 @@ export class StatisticsComponent implements OnInit {
     });
 
     // Load appointments
-    this.apiService.getAppointments().subscribe((appointments: ApiAppointment[]) => {
-      const now = new Date();
-      const futureAppointments = appointments.filter(appointment => 
-        new Date(appointment.appointmentDate) > now
-      );
-      this.statistics.upcomingAppointments = futureAppointments.length;
+    // this.apiService.getAppointments().subscribe((appointments: Appointment[]) => {
+    //   const now = new Date();
+    //   const futureAppointments = appointments.filter(appointment => 
+    //     new Date(appointment.appointmentDate) > now
+    //   );
+    //   this.statistics.upcomingAppointments = futureAppointments.length;
       
-      if (futureAppointments.length > 0) {
-        this.statistics.nextAppointment = new Date(
-          Math.min(...futureAppointments.map(appointment => 
-            new Date(appointment.appointmentDate).getTime()
-          ))
-        );
-      }
-    });
+    //   if (futureAppointments.length > 0) {
+    //     this.statistics.nextAppointment = new Date(
+    //       Math.min(...futureAppointments.map(appointment => 
+    //         new Date(appointment.appointmentDate).getTime()
+    //       ))
+    //     );
+    //   }
+    // });
   }
 }

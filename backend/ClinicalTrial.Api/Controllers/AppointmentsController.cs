@@ -39,13 +39,34 @@ public class AppointmentsController : ControllerBase
         return appointment;
     }
 
+    // [HttpPost]
+    // public async Task<ActionResult<Appointment>> PostAppointment(Appointment appointment)
+    // {
+    //     _context.Appointments.Add(appointment);
+    //     await _context.SaveChangesAsync();
+
+    //     return CreatedAtAction(nameof(GetAppointment), new { id = appointment.Id }, appointment);
+    // }
+
     [HttpPost]
-    public async Task<ActionResult<Appointment>> PostAppointment(Appointment appointment)
+    public async Task<ActionResult<AppointmentDTO>> PostAppointment(AppointmentDTO appointmentDTO)
     {
+        var appointment = new Appointment
+        {
+            AppointmentDate = appointmentDTO.AppointmentDate,
+            Notes = appointmentDTO.Notes,
+            Status = appointmentDTO.Status,
+            ParticipantId = appointmentDTO.ParticipantId,
+            DoctorId = appointmentDTO.DoctorId,
+            TrialId = appointmentDTO.TrialId
+        };
+
         _context.Appointments.Add(appointment);
         await _context.SaveChangesAsync();
 
-        return CreatedAtAction(nameof(GetAppointment), new { id = appointment.Id }, appointment);
+        appointmentDTO.Id = appointment.Id;
+
+        return CreatedAtAction(nameof(GetAppointment), new { id = appointment.Id }, appointmentDTO);
     }
 
     [HttpPut("{id}")]

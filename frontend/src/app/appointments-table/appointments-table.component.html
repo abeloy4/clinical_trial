@@ -1,5 +1,11 @@
 <div class="appointments-table-container">
-  <h2>Upcoming Appointments</h2>
+  <div class="header">
+    <h2>Upcoming Appointments</h2>
+    <button mat-flat-button color="primary" (click)="openAddAppointmentDialog()">
+      <mat-icon>add</mat-icon>
+      Schedule Appointment
+    </button>
+  </div>
 
   <mat-form-field>
     <mat-label>Filter</mat-label>
@@ -10,25 +16,25 @@
     <!-- Participant Column -->
     <ng-container matColumnDef="participant">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Participant </th>
-      <td mat-cell *matCellDef="let row"> {{row.participant}} </td>
+      <td mat-cell *matCellDef="let row"> {{row.participant?.fullName}} </td>
     </ng-container>
 
     <!-- Trial Column -->
     <ng-container matColumnDef="trial">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Trial </th>
-      <td mat-cell *matCellDef="let row"> {{row.trial}} </td>
+      <td mat-cell *matCellDef="let row"> {{row.trial?.name}} </td>
     </ng-container>
 
     <!-- Doctor Column -->
     <ng-container matColumnDef="doctor">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Doctor </th>
-      <td mat-cell *matCellDef="let row"> {{row.doctor}} </td>
+      <td mat-cell *matCellDef="let row"> {{row.doctor?.fullName}} </td>
     </ng-container>
 
     <!-- Date Column -->
-    <ng-container matColumnDef="date">
+    <ng-container matColumnDef="appointmentDate">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
-      <td mat-cell *matCellDef="let row"> {{row.date | date:'mediumDate'}} </td>
+      <td mat-cell *matCellDef="let row"> {{row.appointmentDate | date:'mediumDate'}} </td>
     </ng-container>
 
     <!-- Status Column -->

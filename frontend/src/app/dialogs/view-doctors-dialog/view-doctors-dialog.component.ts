@@ -35,6 +35,14 @@ export class ViewAllDoctorsDialogComponent implements OnInit {
     });
   }
 
+  deleteDoctor(id: number) {
+    this.apiService.deleteDoctor(id).subscribe({
+      next: () => {
+        this.doctors = this.doctors.filter(doctor => doctor.id !== id);
+      }
+    });
+  }
+
   close() {
     this.dialogRef.close();
   }

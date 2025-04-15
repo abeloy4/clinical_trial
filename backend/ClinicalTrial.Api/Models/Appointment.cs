@@ -16,4 +16,12 @@ public class Appointment
     // Navigation properties
     public int ParticipantId { get; set; }
     public Participant Participant { get; set; } = null!;
+
+    public int DoctorId { get; set; }
+    public Doctor Doctor { get; set; } = null!;
+
+    public int TrialId { get; set; }
+    public Trial Trial { get; set; } = null!;
+
 }
+

@@ -20,6 +20,8 @@ h2 {
 }
 
 .mat-mdc-list-item {
+  position: relative;
+  overflow: visible !important;
   margin: 8px 0;
   border-radius: 6px;
   background: white;
@@ -27,6 +29,11 @@ h2 {
   transition: all 0.2s;
   
   &:hover {
+    .delete-button {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
     background: #f3f4f6;
     transform: translateX(4px);
   }
@@ -34,7 +41,7 @@ h2 {
 
 .trial-info {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 12px;
   padding: 12px;
   width: 100%;
@@ -61,8 +68,21 @@ h2 {
   .description {
     color: #6b7280;
     font-size: 0.875rem;
-    margin-top: 4px;
     line-height: 1.4;
+  }
+}
+
+.delete-button {
+  opacity: 0;
+  transform: translateX(10px);
+  transition: all 0.2s ease;
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  margin-top: -20px;
+  
+  &:hover {
+    background-color: rgba(244, 67, 54, 0.1);
   }
 }
 

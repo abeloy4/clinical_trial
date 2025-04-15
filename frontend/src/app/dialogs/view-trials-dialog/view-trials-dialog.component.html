@@ -11,6 +11,9 @@
         <div class="description">{{ trial.description }}</div>
       </div>
     </div>
+    <button mat-icon-button color="warn" (click)="deleteTrial(trial.id)" class="delete-button">
+      <mat-icon>delete</mat-icon>
+    </button>
   </mat-list-item>
 </mat-list>
 

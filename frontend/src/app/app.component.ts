@@ -12,6 +12,9 @@ import { ApiService } from './services/api.service';
 import { ViewAllDoctorsDialogComponent } from './dialogs/view-doctors-dialog/view-doctors-dialog.component';
 import { ViewParticipantsDialogComponent } from './dialogs/view-participants-dialog/view-participants-dialog.component';
 import { ViewTrialsDialogComponent } from './dialogs/view-trials-dialog/view-trials-dialog.component';
+import { AppointmentsTableComponent } from './appointments-table/appointments-table.component';
+import { AddAppointmentDialogComponent } from './dialogs/add-appointment-dialog/add-appointment-dialog.component';
+
 
 
 @Component({
@@ -23,13 +26,16 @@ import { ViewTrialsDialogComponent } from './dialogs/view-trials-dialog/view-tri
     CommonModule,
     MatIconModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    AppointmentsTableComponent,
+
   ]
 })
 export class AppComponent {
   totalDoctors = 0;
   totalParticipants = 0;
   totalTrials = 0;
+  recentAppointments: any[] = [];
 
   constructor(
     private dialog: MatDialog,
@@ -38,6 +44,7 @@ export class AppComponent {
 
   ngOnInit(): void {
     this.loadStatistics();
+    this.loadRecentAppointments();
   }
 
   // Load counts for doctors, participants, and trials
@@ -60,6 +67,82 @@ export class AppComponent {
       error: (err) => console.error('❌ Error loading trials:', err)
     });
   }  
+
+  // Load recent appointments
+  loadRecentAppointments(): void {
+    // Dummy data for appointments
+    const dummyAppointments = [
+      {
+        date: new Date('2025-04-15T10:00:00'),
+        patientName: 'John Smith',
+        doctorName: 'Sarah Wilson',
+        trialName: 'Cancer Treatment Trial',
+        status: 'scheduled'
+      },
+      {
+        date: new Date('2025-04-16T14:30:00'),
+        patientName: 'Mary Johnson',
+        doctorName: 'Michael Brown',
+        trialName: 'Diabetes Study',
+        status: 'scheduled'
+      },
+      {
+        date: new Date('2025-04-17T09:15:00'),
+        patientName: 'Robert Davis',
+        doctorName: 'Emily Chen',
+        trialName: 'Heart Disease Trial',
+        status: 'scheduled'
+      },
+      {
+        date: new Date('2025-04-18T11:45:00'),
+        patientName: 'Patricia Miller',
+        doctorName: 'James Taylor',
+        trialName: 'Arthritis Study',
+        status: 'scheduled'
+      }
+    ];
+
+    this.recentAppointments = dummyAppointments;
+  }
+
+  viewAllAppointments(): void {
+    this.dialog.open(AppointmentsTableComponent, {
+      width: '900px',
+      height: '80vh',
+      panelClass: 'custom-dialog'
+    });
+  }
+  
+  scheduleAppointment(): void {
+    const dialogRef = this.dialog.open(AddAppointmentDialogComponent, {
+      width: '500px',
+      panelClass: 'custom-dialog'
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Add the new appointment to recent appointments
+        const newAppointment = {
+          date: new Date(result.appointmentDate),
+          patientName: this.findParticipantName(result.participantId),
+          doctorName: this.findDoctorName(result.doctorId),
+          trialName: 'Trial Name', // You would normally get this from the form
+          status: 'scheduled'
+        };
+        this.recentAppointments = [newAppointment, ...this.recentAppointments.slice(0, 3)];
+      }
+    });
+  }
+  
+  private findParticipantName(id: number): string {
+    // This would normally lookup the participant name from your data
+    return 'New Patient';
+  }
+  
+  private findDoctorName(id: number): string {
+    // This would normally lookup the doctor name from your data
+    return 'New Doctor';
+  }
 
   // Dialog openers
   addDoctor(): void {
@@ -131,7 +214,7 @@ export class AppComponent {
   viewDoctors(): void {
     this.dialog.open(ViewAllDoctorsDialogComponent, {
       width: '500px',
-      panelClass: 'modern-dialog'
+      panelClass: 'custom-dialog'
     });
   }
 
@@ -150,11 +233,9 @@ export class AppComponent {
   }
   
 
+  
   // Navigation / Utility Actions
-  viewAllAppointments(): void {
-    // TODO: Implement view all appointments logic
-    console.log('View all appointments clicked');
-  }
+
 
   logout(): void {
     // TODO: Implement logout logic

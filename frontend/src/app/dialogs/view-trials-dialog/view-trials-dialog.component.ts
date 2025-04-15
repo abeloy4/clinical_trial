@@ -28,6 +28,14 @@ export class ViewTrialsDialogComponent implements OnInit {
     private apiService: ApiService
   ) {}
 
+  deleteTrial(id: number): void {
+    this.apiService.deleteTrial(id).subscribe({
+      next: () => {
+        this.trials = this.trials.filter(t => t.id !== id);
+      }
+    });
+  }
+
   ngOnInit(): void {
    // Correct and safe
     this.apiService.getTrials().subscribe({

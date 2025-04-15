@@ -1,0 +1,66 @@
+<h2 mat-dialog-title>Schedule Appointment</h2>
+
+<form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
+  <div mat-dialog-content>
+    <div class="form-field">
+      <mat-form-field appearance="outline">
+        <mat-label>Date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="appointmentDate" [min]="minDate">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="appointmentForm.get('appointmentDate')?.hasError('required')">
+          Date is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-field">
+      <mat-form-field appearance="outline">
+        <mat-label>Location (Optional)</mat-label>
+        <input matInput formControlName="location" placeholder="Enter location">
+      </mat-form-field>
+    </div>
+
+    <div class="form-field">
+      <mat-form-field appearance="outline">
+        <mat-label>Select Participant</mat-label>
+        <mat-select formControlName="participantId">
+          <mat-option *ngFor="let participant of participants" [value]="participant.id">
+            {{ participant.fullName }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="appointmentForm.get('participantId')?.hasError('required')">
+          Participant is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-field">
+      <mat-form-field appearance="outline">
+        <mat-label>Select Doctor</mat-label>
+        <mat-select formControlName="doctorId">
+          <mat-option *ngFor="let doctor of doctors" [value]="doctor.id">
+            {{ doctor.fullName }} - {{ doctor.specialization }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="appointmentForm.get('doctorId')?.hasError('required')">
+          Doctor is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-field">
+      <mat-form-field appearance="outline">
+        <mat-label>Notes (Optional)</mat-label>
+        <textarea matInput formControlName="notes" rows="3" placeholder="Add any notes"></textarea>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-button type="button" (click)="onCancel()">Cancel</button>
+    <button mat-flat-button color="primary" type="submit" [disabled]="!appointmentForm.valid">
+      Schedule
+    </button>
+  </div>
+</form>

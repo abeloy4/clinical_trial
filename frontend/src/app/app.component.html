@@ -31,19 +31,23 @@
     </div>
 
     <div class="action-buttons">
-      <button mat-raised-button color="primary" (click)="addDoctor()">
+      <button (click)="addDoctor()">
         <mat-icon>person_add</mat-icon>
-        Add Doctor
+        <span>Add Doctor</span>
       </button>
-      <button mat-raised-button color="primary" (click)="addParticipant()">
+      <button (click)="addParticipant()">
         <mat-icon>group_add</mat-icon>
-        Add Participant
+        <span>Add Participant</span>
       </button>
-      <button mat-raised-button color="primary" (click)="addTrial()">
+      <button (click)="addTrial()">
         <mat-icon>add_circle</mat-icon>
-        Add Trial
+        <span>Add Trial</span>
       </button>
-    </div>
+      <button (click)="scheduleAppointment()">
+        <mat-icon>add_circle</mat-icon>
+        <span>Schedule Appointment</span>
+      </button>  
+    </div>   
 
     <div class="appointments-card">
       <div class="card-header">
@@ -54,8 +58,8 @@
         </button>
       </div>
       
-      <!-- <div class="appointments-grid">
-        <div *ngFor="let appointment of recentAppointments" class="appointment-item">
+      <div class="appointments-grid">
+        <div *ngFor="let appointment of recentAppointments" (click)="viewAllAppointments()">
           <div class="date-badge">
             <span class="month">{{ appointment.date | date:'MMM' }}</span>
             <span class="day">{{ appointment.date | date:'dd' }}</span>
@@ -72,7 +76,7 @@
             {{ appointment.trialName }}
           </div>
         </div>
-      </div> -->
+      </div>
     </div>
   </main>
 </div>

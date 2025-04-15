@@ -1,5 +1,4 @@
 <h2>All Doctors</h2>
-
 <mat-list>
   <mat-list-item *ngFor="let doctor of doctors">
     <div class="doctor-info">
@@ -11,6 +10,9 @@
         <div class="specialization">{{ doctor.specialization }}</div>
       </div>
     </div>
+    <button mat-icon-button color="warn" (click)="deleteDoctor(doctor.id)" class="delete-button">
+      <mat-icon>delete</mat-icon>
+    </button>
   </mat-list-item>
 </mat-list>
 

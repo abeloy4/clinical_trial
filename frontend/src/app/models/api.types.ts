@@ -24,12 +24,24 @@ export interface Participant {
   trialId: number;
   trial: Trial;
 }
-
-export interface ApiAppointment {
+export interface Appointment {
   id: number;
   appointmentDate: string;
   notes?: string;
   status: string;
   participantId: number;
   participant: Participant;
+
+  doctorId: number;
+  doctor: Doctor;
+
+  trialId: number;
+  trial: Trial;
+}
+export interface DisplayAppointment {
+  participant: { fullName: string };
+  trial: { name: string };
+  doctor: { fullName: string };
+  appointmentDate: Date;
+  status: string;
 }

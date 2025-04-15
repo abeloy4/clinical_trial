@@ -27,6 +27,14 @@ export class ViewParticipantsDialogComponent implements OnInit {
     private apiService: ApiService
   ) {}
 
+  deleteParticipant(id: number): void {
+    this.apiService.deleteParticipant(id).subscribe({
+      next: () => {
+        this.participants = this.participants.filter(p => p.id !== id);
+      }
+    });
+  }
+
   ngOnInit(): void {
     this.apiService.getParticipants().subscribe({
       next: (res) => {
