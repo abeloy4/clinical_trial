@@ -10,12 +10,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 
 import { ApiService } from '../../services/api.service';
-import { Doctor, Participant } from '../../models/api.types';
+import { Doctor, Participant, Trial } from '../../models/api.types';
 
 @Component({
   selector: 'app-add-appointment-dialog',
   templateUrl: './add-appointment-dialog.component.html',
-  styleUrls: ['./add-appointment-dialog.component.scss'],
+  styleUrls: [],
   standalone: true,
   imports: [
     CommonModule,
@@ -33,6 +33,7 @@ export class AddAppointmentDialogComponent implements OnInit {
   appointmentForm!: FormGroup;
   participants: Participant[] = [];
   doctors: Doctor[] = [];
+  trials: Trial[] = [];
   minDate: Date = new Date();
 
   constructor(
@@ -47,7 +48,8 @@ export class AddAppointmentDialogComponent implements OnInit {
       location: [''],
       participantId: ['', Validators.required],
       doctorId: ['', Validators.required],
-      notes: ['']
+      notes: ['', Validators.required],
+      trialId: ['', Validators.required]
     });
 
     this.apiService.getParticipants().subscribe({
@@ -67,12 +69,39 @@ export class AddAppointmentDialogComponent implements OnInit {
         console.error('Error loading doctors:', err);
       }
     });
+    this.apiService.getTrials().subscribe({
+      next: (res) => {
+        this.trials = Array.isArray(res) ? res : res.$values ?? [];
+      },
+      error: (err) => {
+        console.error('Error loading trials:', err);
+      }
+    });
+
+    this.appointmentForm.get('participantId')?.valueChanges.subscribe(participantId => {
+      const participant = this.participants.find(p => p.id === participantId);
+      if (participant) {
+        // Wait a tick to ensure options are loaded
+        setTimeout(() => {
+          this.appointmentForm.patchValue({ trialId: participant.trialId });
+        }, 0);
+      }
+    });
+    
+    // this.apiService.getTrials().subscribe({
+    //   next: (res) => {
+    //     this.trials = Array.isArray(res) ? res : res.$values ?? [];
+    //   },
+    //   error: (err) => {
+    //     console.error('Error loading trials:', err);
+    //   }
+    // });
   }
 
   onSubmit(): void {
     if (this.appointmentForm.valid) {
-      const appointment = this.appointmentForm.value;
-      this.dialogRef.close(appointment);
+      const formData = this.appointmentForm.getRawValue(); // includes disabled controls
+this.dialogRef.close(formData); // ✅ only return flat object, not enriched ones
     }
   }
 

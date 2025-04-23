@@ -4,6 +4,9 @@ import { Observable } from 'rxjs';
 import { Doctor, Trial, Participant, Appointment } from '../models/api.types';
 import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
+import { AppointmentDTO } from '../models/api.types';
+import { AppointmentViewDTO } from '../models/api.types';
+
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +36,7 @@ export class ApiService {
   }
 
   // Trials
-  getTrials(): Observable<Trial[]> {
+  getTrials() {
     return this.http.get<any>(`${this.apiUrl}/trials`).pipe(
       map(res => Array.isArray(res) ? res : res.$values ?? [])
     );
@@ -64,17 +67,32 @@ export class ApiService {
   // }
 
   
-  getAppointments() {
-    return this.http.get<any>(`${this.apiUrl}/appointments`).pipe(
-      map(res => Array.isArray(res) ? res : res.$values ?? [])
-    );
+  // getAppointments() {
+  //   return this.http.get<any>(`${this.apiUrl}/appointments`).pipe(
+  //     map(res => Array.isArray(res) ? res : res.$values ?? [])
+  //   );
+  // }
+  getAppointments(): Observable<AppointmentViewDTO[]> {
+    return this.http.get<AppointmentViewDTO[]>(`${this.apiUrl}/appointments`);
   }
   
-  addAppointment(appointment: Appointment): Observable<Appointment> {
-    return this.http.post<any>(`${this.apiUrl}/appointments`, appointment);
-  }
-
+  
   updateAppointment(id: number, appointment: Appointment): Observable<Appointment> {
     return this.http.put<any>(`${this.apiUrl}/appointments/${id}`, appointment);
   }
+
+ // addAppointment(appointment: AppointmentDTO): Observable<AppointmentDTO> {
+   // return this.http.post<AppointmentDTO>(`${this.apiUrl}/appointments`, appointment);
+  //}
+
+  addAppointment(appointment: AppointmentDTO): Observable<Appointment> {
+    return this.http.post<any>(`${this.apiUrl}/appointments`, appointment);
+  }
+
+  deleteAppointment(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/appointments/${id}`);
+  }
+  
+
+  
 }

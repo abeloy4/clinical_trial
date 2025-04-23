@@ -13,6 +13,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { AddAppointmentDialogComponent } from '../dialogs/add-appointment-dialog/add-appointment-dialog.component';
 import { Appointment, DisplayAppointment } from '../models/api.types';
+import { ApiService } from '../services/api.service';
+import { AppointmentViewDTO } from '../models/api.types';
+
 
 
 
@@ -35,15 +38,16 @@ const APPOINTMENTS_DATA: DisplayAppointment[] = [];
   ]
 })
 export class AppointmentsTableComponent implements AfterViewInit {
-  displayedColumns: string[] = ['participant', 'trial', 'doctor', 'appointmentDate', 'status'];
-  dataSource = new MatTableDataSource<DisplayAppointment>(APPOINTMENTS_DATA);
+  displayedColumns: string[] = ['participantName', 'trialName', 'doctorName', 'appointmentDate', 'status', 'actions'];
+  dataSource = new MatTableDataSource<AppointmentViewDTO>([]);
+  //dataSource = new MatTableDataSource<DisplayAppointment>(APPOINTMENTS_DATA);
 
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
     private dialog: MatDialog,
-    //private apiService: ApiService
+    private apiService: ApiService
   ) {}
 
   ngAfterViewInit() {
@@ -52,48 +56,39 @@ export class AppointmentsTableComponent implements AfterViewInit {
     this.loadAppointments();
   }
 
-  loadAppointments() {
-    // Dummy appointments data
-    const appointments: DisplayAppointment[] = [
-      {
-        participant: { fullName: 'John Smith' },
-        trial: { name: 'Cancer Treatment Trial' },
-        doctor: { fullName: 'Dr. Sarah Wilson' },
-        appointmentDate: new Date('2025-04-15T10:00:00'),
-        status: 'scheduled'
-      },
-      {
-        participant: { fullName: 'Mary Johnson' },
-        trial: { name: 'Diabetes Study' },
-        doctor: { fullName: 'Dr. Michael Brown' },
-        appointmentDate: new Date('2025-04-16T14:30:00'),
-        status: 'scheduled'
-      },
-      {
-        participant: { fullName: 'Robert Davis' },
-        trial: { name: 'Heart Disease Trial' },
-        doctor: { fullName: 'Dr. Emily Chen' },
-        appointmentDate: new Date('2025-04-17T09:15:00'),
-        status: 'scheduled'
-      },
-      {
-        participant: { fullName: 'Patricia Miller' },
-        trial: { name: 'Arthritis Study' },
-        doctor: { fullName: 'Dr. James Taylor' },
-        appointmentDate: new Date('2025-04-18T11:45:00'),
-        status: 'scheduled'
-      },
-      {
-        participant: { fullName: 'Michael Wilson' },
-        trial: { name: 'Alzheimer Study' },
-        doctor: { fullName: 'Dr. Lisa Anderson' },
-        appointmentDate: new Date('2025-04-19T13:00:00'),
-        status: 'scheduled'
-      }
-    ];
+  //isLoading = true;
 
-    this.dataSource.data = appointments;
+
+  loadAppointments() {
+    this.apiService.getAppointments().subscribe({
+      next: (appointments) => {
+        console.log('Fetched appointments:', appointments);
+        this.dataSource.data = appointments;
+      },
+      error: (err) => {
+        console.error('Failed to load appointments', err);
+      }
+    }); 
   }
+  editAppointment(appointment: AppointmentViewDTO): void {
+    console.log('Edit appointment:', appointment);
+    // You'll open a dialog here later
+  }
+  
+  deleteAppointment(id: number): void {
+    if (confirm('Are you sure you want to delete this appointment?')) {
+      this.apiService.deleteAppointment(id).subscribe({
+        next: () => {
+          console.log('Appointment deleted');
+          this.loadAppointments(); // Refresh table
+        },
+        error: (err) => {
+          console.error('Failed to delete appointment', err);
+        }
+      });
+    }
+  }
+  
 
   openAddAppointmentDialog() {
     const dialogRef = this.dialog.open(AddAppointmentDialogComponent, {

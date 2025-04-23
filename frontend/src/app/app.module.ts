@@ -27,6 +27,7 @@ import { AddEntryComponent } from './add-entry/add-entry.component';
 import { AppointmentsTableComponent } from './appointments-table/appointments-table.component';
 import { AddAppointmentDialogComponent } from './dialogs/add-appointment-dialog/add-appointment-dialog.component';
 
+
 @NgModule({
   declarations: [
     AddAppointmentDialogComponent
@@ -60,7 +61,7 @@ import { AddAppointmentDialogComponent } from './dialogs/add-appointment-dialog/
     AddEntryComponent,
     AppointmentsTableComponent
   ],
-  providers: [DatePipe],
+  providers: [DatePipe, MatNativeDateModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,3 +1,11 @@
+:host {
+  display: block;
+  height: 100%;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+
 .appointments-table-container {
   background: #ffffff;
   border-radius: 16px;

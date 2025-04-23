@@ -14,6 +14,7 @@ import { ViewParticipantsDialogComponent } from './dialogs/view-participants-dia
 import { ViewTrialsDialogComponent } from './dialogs/view-trials-dialog/view-trials-dialog.component';
 import { AppointmentsTableComponent } from './appointments-table/appointments-table.component';
 import { AddAppointmentDialogComponent } from './dialogs/add-appointment-dialog/add-appointment-dialog.component';
+import { AppointmentDTO } from './models/api.types';
 
 
 
@@ -70,46 +71,32 @@ export class AppComponent {
 
   // Load recent appointments
   loadRecentAppointments(): void {
-    // Dummy data for appointments
-    const dummyAppointments = [
-      {
-        date: new Date('2025-04-15T10:00:00'),
-        patientName: 'John Smith',
-        doctorName: 'Sarah Wilson',
-        trialName: 'Cancer Treatment Trial',
-        status: 'scheduled'
+    this.apiService.getAppointments().subscribe({
+      next: (appointments) => {
+        const sorted = [...appointments].sort((a, b) =>
+          new Date(b.appointmentDate).getTime() - new Date(a.appointmentDate).getTime()
+        );
+    
+        this.recentAppointments = sorted.slice(0, 4).map(a => ({
+          date: new Date(a.appointmentDate),
+          patientName: a.participantName,
+          doctorName: a.doctorName,
+          trialName: a.trialName,
+          status: a.status
+        }));
       },
-      {
-        date: new Date('2025-04-16T14:30:00'),
-        patientName: 'Mary Johnson',
-        doctorName: 'Michael Brown',
-        trialName: 'Diabetes Study',
-        status: 'scheduled'
-      },
-      {
-        date: new Date('2025-04-17T09:15:00'),
-        patientName: 'Robert Davis',
-        doctorName: 'Emily Chen',
-        trialName: 'Heart Disease Trial',
-        status: 'scheduled'
-      },
-      {
-        date: new Date('2025-04-18T11:45:00'),
-        patientName: 'Patricia Miller',
-        doctorName: 'James Taylor',
-        trialName: 'Arthritis Study',
-        status: 'scheduled'
+      error: (err) => {
+        console.error('Failed to load recent appointments', err);
       }
-    ];
-
-    this.recentAppointments = dummyAppointments;
+    });    
   }
 
   viewAllAppointments(): void {
     this.dialog.open(AppointmentsTableComponent, {
       width: '900px',
       height: '80vh',
-      panelClass: 'custom-dialog'
+      panelClass: 'custom-dialog',
+      autoFocus: false
     });
   }
   
@@ -118,20 +105,44 @@ export class AppComponent {
       width: '500px',
       panelClass: 'custom-dialog'
     });
-  
+
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // Add the new appointment to recent appointments
-        const newAppointment = {
-          date: new Date(result.appointmentDate),
-          patientName: this.findParticipantName(result.participantId),
-          doctorName: this.findDoctorName(result.doctorId),
-          trialName: 'Trial Name', // You would normally get this from the form
-          status: 'scheduled'
+        const newAppointment: AppointmentDTO = {
+          appointmentDate: new Date(result.appointmentDate).toISOString(),
+          notes: result.notes || '',
+          status: 'scheduled',
+          participantId: result.participantId,
+          doctorId: result.doctorId,
+          trialId: result.trialId
         };
-        this.recentAppointments = [newAppointment, ...this.recentAppointments.slice(0, 3)];
+  
+        console.log('Sending appointment:', newAppointment);
+        this.apiService.addAppointment(newAppointment).subscribe({
+          next: (res) => {
+            console.log('Appointment created:', res);
+            this.loadRecentAppointments(); // Reload table with new data
+          },
+          error: (err) => {
+            console.error('Failed to create appointment', err);
+          }
+        });
       }
     });
+  
+    // dialogRef.afterClosed().subscribe(result => {
+    //   if (result) {
+    //     // Add the new appointment to recent appointments
+    //     const newAppointment = {
+    //       date: new Date(result.appointmentDate),
+    //       patientName: this.findParticipantName(result.participantId),
+    //       doctorName: this.findDoctorName(result.doctorId),
+    //       trialName: 'Trial Name', // You would normally get this from the form
+    //       status: 'scheduled'
+    //     };
+    //     this.recentAppointments = [newAppointment, ...this.recentAppointments.slice(0, 3)];
+    //   }
+    // });
   }
   
   private findParticipantName(id: number): string {

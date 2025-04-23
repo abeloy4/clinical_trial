@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ClinicalTrial.Api.Data;
 using ClinicalTrial.Api.Models;
+using ClinicalTrial.Api.DTOs;
 
 namespace ClinicalTrial.Api.Controllers;
 
@@ -17,12 +18,31 @@ public class AppointmentsController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Appointment>>> GetAppointments()
+    public async Task<ActionResult<IEnumerable<AppointmentViewDTO>>> GetAppointments()
     {
-        return await _context.Appointments
+        var appointments = await _context.Appointments
             .Include(a => a.Participant)
+            .Include(a => a.Doctor)
+            .Include(a => a.Trial)
+            .Select(a => new AppointmentViewDTO
+            {
+                Id = a.Id,
+                AppointmentDate = a.AppointmentDate,
+                Notes = a.Notes,
+                Status = a.Status,
+                ParticipantId = a.ParticipantId,
+                ParticipantName = a.Participant.FullName,
+                DoctorId = a.DoctorId,
+                DoctorName = a.Doctor.FullName,
+                TrialId = a.TrialId,
+                TrialName = a.Trial.Name
+            })
             .ToListAsync();
+
+        return appointments;
     }
+
+
 
     [HttpGet("{id}")]
     public async Task<ActionResult<Appointment>> GetAppointment(int id)
@@ -39,18 +59,14 @@ public class AppointmentsController : ControllerBase
         return appointment;
     }
 
-    // [HttpPost]
-    // public async Task<ActionResult<Appointment>> PostAppointment(Appointment appointment)
-    // {
-    //     _context.Appointments.Add(appointment);
-    //     await _context.SaveChangesAsync();
-
-    //     return CreatedAtAction(nameof(GetAppointment), new { id = appointment.Id }, appointment);
-    // }
-
     [HttpPost]
-    public async Task<ActionResult<AppointmentDTO>> PostAppointment(AppointmentDTO appointmentDTO)
+    public async Task<ActionResult<AppointmentDTO>> PostAppointment([FromBody] AppointmentDTO appointmentDTO)
     {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
         var appointment = new Appointment
         {
             AppointmentDate = appointmentDTO.AppointmentDate,
@@ -68,6 +84,8 @@ public class AppointmentsController : ControllerBase
 
         return CreatedAtAction(nameof(GetAppointment), new { id = appointment.Id }, appointmentDTO);
     }
+
+
 
     [HttpPut("{id}")]
     public async Task<IActionResult> PutAppointment(int id, Appointment appointment)
