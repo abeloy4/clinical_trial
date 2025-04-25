@@ -30,8 +30,7 @@ A full-stack web application to manage **Doctors**, **Participants**, **Trials**
 ## 📸 Screenshots
 
 ### Dashboard
-
-![Dashboard](<img width="1420" alt="image" src="https://github.com/user-attachments/assets/24980b13-c119-44ca-a494-27709ab5d087" />)
+<img src="https://github.com/user-attachments/assets/24980b13-c119-44ca-a494-27709ab5d087" alt="Dashboard" width="800"/>
 
 _Landing view with total stats for Doctors, Trials, Participants, Appointments_
 
