@@ -27,6 +27,7 @@ A full-stack web application to manage **Doctors**, **Participants**, **Trials**
 ## 📸 Screenshots
 
 ### Dashboard
+
 _Landing view with total stats for Doctors, Trials, Participants, Appointments_
 
 ### Appointment Dialog
@@ -119,5 +120,5 @@ _Sortable and filterable data table with edit/delete actions and pagination_
 - [Angular](https://angular.io/) & [Angular Material](https://material.angular.io/)
 - [ASP.NET Core](https://dotnet.microsoft.com/en-us/apps/aspnet)
 - [SQLite](https://www.sqlite.org/index.html)
-- pen-source community
+- open-source community
 
