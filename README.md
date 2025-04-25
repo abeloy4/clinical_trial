@@ -2,6 +2,9 @@
 
 A full-stack web application to manage **Doctors**, **Participants**, **Trials**, and **Appointments** for clinical research teams. Built with **Angular** and **.NET**, it features intuitive scheduling, clean UI, and real-time updates.
 
+<img width="1420" alt="image" src="https://github.com/user-attachments/assets/24980b13-c119-44ca-a494-27709ab5d087" />
+
+
 ---
 
 ## 📺 Demo
@@ -27,6 +30,8 @@ A full-stack web application to manage **Doctors**, **Participants**, **Trials**
 ## 📸 Screenshots
 
 ### Dashboard
+
+![Dashboard](relative-or-absolute-path-to-image)
 
 _Landing view with total stats for Doctors, Trials, Participants, Appointments_
 
