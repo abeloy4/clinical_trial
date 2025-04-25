@@ -52,28 +52,28 @@ _Sortable and filterable data table with edit/delete actions and pagination_
 
 ### 1. Clone the Repository
 
-```bash
-git clone https://github.com/your-username/clinical-trial-manager.git
-cd clinical-trial-manager
-```
+   ```bash
+   git clone https://github.com/your-username/clinical-trial-manager.git
+   cd clinical-trial-manager
+   ```
 
 ### 2. Backend Setup
 
-```bash
-cd backend/ClinicalTrial.Api
-dotnet build
-dotnet ef database update
-dotnet run
-```
+   ```bash
+   cd backend/ClinicalTrial.Api
+   dotnet build
+   dotnet ef database update
+   dotnet run
+   ```
 
 ### 3. Frontend Setup
 
-```bash
-cd backend/ClinicalTrial.Api
-dotnet build
-dotnet ef database update
-dotnet run
-```
+   ```bash
+   cd backend/ClinicalTrial.Api
+   dotnet build
+   dotnet ef database update
+   dotnet run
+   ```
 
 ## 🧰 Technology Stack
 
@@ -101,3 +101,23 @@ dotnet run
 
    ```bash
    git checkout -b feature/amazing-feature
+   ```
+3. **Commit changes**:
+   
+   ```bash
+   git commit -m "Add amazing feature"
+   ```
+4. **Push**:
+   
+   ```bash
+   git push origin feature/amazing-feature
+   ```
+5. **Open a Pull Request**:
+
+## 🙏 Acknowledgments
+
+- [Angular](https://angular.io/) & [Angular Material](https://material.angular.io/)
+- [ASP.NET Core](https://dotnet.microsoft.com/en-us/apps/aspnet)
+- [SQLite](https://www.sqlite.org/index.html)
+- pen-source community
+
