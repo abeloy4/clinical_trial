@@ -1,5 +1,8 @@
 # Clinical Trial Management System
 
+🧪 Clinical Trial Management System
+A full-stack web application to manage doctors, participants, trials, and appointments in clinical research. Built with Angular and .NET, the system supports scheduling appointments with specific times and offers a modern, responsive UI.
+
 A full-stack application for managing clinical trials, doctors, and participants.
 
 ## Project Structure
