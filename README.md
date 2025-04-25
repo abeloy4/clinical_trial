@@ -55,3 +55,49 @@ _Sortable and filterable data table with edit/delete actions and pagination_
 ```bash
 git clone https://github.com/your-username/clinical-trial-manager.git
 cd clinical-trial-manager
+```
+
+### 2. Backend Setup
+
+```bash
+cd backend/ClinicalTrial.Api
+dotnet build
+dotnet ef database update
+dotnet run
+```
+
+### 3. Frontend Setup
+
+```bash
+cd backend/ClinicalTrial.Api
+dotnet build
+dotnet ef database update
+dotnet run
+```
+
+## 🧰 Technology Stack
+
+| Layer     | Stack                            |
+|-----------|----------------------------------|
+| Frontend  | Angular 16 + Angular Material    |
+| Backend   | ASP.NET Core 8 Web API           |
+| Database  | SQLite                           |
+| Styling   | SCSS / Angular Material          |
+| API Docs  | Swagger                          |
+
+---
+
+## 🔐 Role-Based Access
+
+- **Admin** – Full access to manage doctors, participants, trials, and appointments  
+- **Patient (coming soon)** – View own appointments
+
+---
+
+## 🤝 Contributing
+
+1. **Fork** the repository
+2. **Create a feature branch**:
+
+   ```bash
+   git checkout -b feature/amazing-feature
