@@ -1,48 +1,28 @@
-# Clinical Trial Management System
+#🧪 Clinical Trial Management System
 
-🧪 Clinical Trial Management System
 A full-stack web application to manage doctors, participants, trials, and appointments in clinical research. Built with Angular and .NET, the system supports scheduling appointments with specific times and offers a modern, responsive UI.
 
-A full-stack application for managing clinical trials, doctors, and participants.
+### 📺 Demo
+Clinical Trial Management System – April 2025
+Watch Video (Link here)
 
-## Project Structure
+### ✨ Features
+✅ Role-based authentication for Admin and Patient
+✅ Add, edit, and delete Doctors, Participants, and Trials
+✅ Schedule appointments with precise date and time selection
+✅ View upcoming appointments and filter/search them
+✅ Edit/Delete appointments with real-time updates
+✅ Responsive and elegant Angular Material UI
+✅ Backend API powered by .NET Core and SQLite
+✅ Swagger documentation for all API endpoints
 
-```
-Clinical_Trial/
-├── frontend/           # Angular frontend application
-│   ├── src/
-│   │   ├── app/
-│   │   │   ├── appointments/
-│   │   │   ├── dialogs/
-│   │   │   ├── statistics/
-│   │   │   └── ...
-│   │   ├── assets/
-│   │   └── ...
-│   └── package.json
-│
-└── backend/           # Node.js/Express backend application
-    ├── src/
-    │   ├── controllers/    # Request handlers
-    │   ├── models/        # Database models
-    │   ├── routes/        # API routes
-    │   ├── services/      # Business logic
-    │   └── app.js        # Main application file
-    ├── config/          # Configuration files
-    └── package.json
-```
+### 📸 Screenshots
+Dashboard Overview
+Landing with totals and quick stats
 
-## Getting Started
+Add Appointment
+Date + time picker with form validation
 
-### Frontend
-```bash
-cd frontend
-npm install
-ng serve
-```
+Appointments Table
+Filterable and paginated data table with actions
 
-### Backend
-```bash
-cd backend
-npm install
-npm run dev
-```
