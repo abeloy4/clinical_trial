@@ -1,28 +1,57 @@
 # 🧪 Clinical Trial Management System
 
-<p>A full-stack web application to manage doctors, participants, trials, and appointments in clinical research. Built with Angular and .NET, the system supports scheduling appointments <p> with specific times and offers a modern, responsive UI.
+A full-stack web application to manage **Doctors**, **Participants**, **Trials**, and **Appointments** for clinical research teams. Built with **Angular** and **.NET**, it features intuitive scheduling, clean UI, and real-time updates.
+
+---
 
 ## 📺 Demo
-<p>Clinical Trial Management System – April 2025
-<p> Watch Video (Link here)
 
-### ✨ Features
-<p> ✅ Role-based authentication for Admin and Patient
-<p> ✅ Add, edit, and delete Doctors, Participants, and Trials
-<p> ✅ Schedule appointments with precise date and time selection
-<p> ✅ View upcoming appointments and filter/search them
-<p> ✅ Edit/Delete appointments with real-time updates
-<p> ✅ Responsive and elegant Angular Material UI
-<p> ✅ Backend API powered by .NET Core and SQLite
-<p> ✅ Swagger documentation for all API endpoints
+**Clinical Trial Management System** – April 2025  
+[🎥 Watch Demo Video](#) *(Add video link here)*
 
-### 📸 Screenshots
-Dashboard Overview
-Landing with totals and quick stats
+---
 
-Add Appointment
-Date + time picker with form validation
+## ✨ Features
 
-Appointments Table
-Filterable and paginated data table with actions
+- 🧑‍⚕️ Manage **Doctors**, **Participants**, and **Trials**
+- 📅 Schedule appointments with **custom date and time**
+- 🔄 View, edit, and delete upcoming appointments
+- 📊 Dashboard cards show total entities at a glance
+- 🔍 Search and filter in appointment tables
+- ✅ **Form validation**, **snackbars**, and user feedback
+- 📱 **Responsive UI** with Angular Material
+- ⚙️ Swagger API documentation
 
+---
+
+## 📸 Screenshots
+
+### Dashboard
+_Landing view with total stats for Doctors, Trials, Participants, Appointments_
+
+### Appointment Dialog
+_Fully validated form with time selection and trial linking_
+
+### Appointments Table
+_Sortable and filterable data table with edit/delete actions and pagination_
+
+---
+
+## ⚡ Quick Start
+
+### Prerequisites
+
+- Node.js + Angular CLI
+- .NET SDK 8.0
+- SQLite
+- Docker (optional)
+
+---
+
+## 🛠 Installation
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/your-username/clinical-trial-manager.git
+cd clinical-trial-manager
