@@ -31,14 +31,32 @@ A full-stack web application to manage **Doctors**, **Participants**, **Trials**
 
 ### Dashboard
 <img src="https://github.com/user-attachments/assets/24980b13-c119-44ca-a494-27709ab5d087" alt="Dashboard" width="800"/>
-
 _Landing view with total stats for Doctors, Trials, Participants, Appointments_
 
-### Appointment Dialog
-_Fully validated form with time selection and trial linking_
+### Add Trial Dialog
+<img width="529" alt="image" src="https://github.com/user-attachments/assets/7241b0fa-2631-4846-b816-ca414ea157eb" />
+
+_A form to create a new clinical trial, including trial name, description, start date, and end date._
+
+### Add Doctor Dialog
+<img width="800" alt="image" src="https://github.com/user-attachments/assets/dfc4c382-4528-4c8c-9f7d-3a6fd849bfae" />
+
+_A form to register a doctor with specialization and trial assignment._
+
+### Add Participant Dialog
+<img width="532" alt="image" src="https://github.com/user-attachments/assets/1886c796-bb21-454e-913b-fda96bc62fad" />
+
+_A form to add a participant with full medical history and trial enrollment._
+
+### Schedule Appointment Dialog
+<img width="524" alt="image" src="https://github.com/user-attachments/assets/97c3c597-6a21-46d3-8e01-861f2558b8b9" />
+
+_A form to schedule appointments by selecting participant, doctor, time, date, and optional location._
 
 ### Appointments Table
-_Sortable and filterable data table with edit/delete actions and pagination_
+<img width="927" alt="image" src="https://github.com/user-attachments/assets/e08ada97-5f24-4931-ab2f-faa9d4d1c240" />
+
+_A sortable, searchable, and paginated table displaying all scheduled appointments with edit and delete functionality._
 
 ---
 
