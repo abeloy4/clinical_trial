@@ -8,6 +8,8 @@ public class Appointment
 
     public DateTime AppointmentDate { get; set; }
 
+    public string AppointmentTime { get; set; } = string.Empty;
+
     [MaxLength(500)]
     public string? Notes { get; set; }
 

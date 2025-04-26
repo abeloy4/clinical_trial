@@ -45,6 +45,7 @@ export class AddAppointmentDialogComponent implements OnInit {
   ngOnInit(): void {
     this.appointmentForm = this.fb.group({
       appointmentDate: ['', Validators.required],
+      appointmentTime: ['', Validators.required],
       location: [''],
       participantId: ['', Validators.required],
       doctorId: ['', Validators.required],

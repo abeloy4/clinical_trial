@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XM/Qr9suIIc=",
+  "dgSpecHash": "81b2QvlhFq0=",
   "success": true,
-  "projectFilePath": "/Users/student/Desktop/clinical_trial/backend/ClinicalTrial.Api/ClinicalTrial.Api.csproj",
+  "projectFilePath": "/Users/student/Desktop/TrialClinic/clinical_trial/backend/ClinicalTrial.Api/ClinicalTrial.Api.csproj",
   "expectedPackageFiles": [
     "/Users/student/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/student/.nuget/packages/microsoft.aspnetcore.openapi/8.0.0/microsoft.aspnetcore.openapi.8.0.0.nupkg.sha512",

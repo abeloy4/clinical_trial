@@ -28,6 +28,7 @@ public class AppointmentsController : ControllerBase
             {
                 Id = a.Id,
                 AppointmentDate = a.AppointmentDate,
+                AppointmentTime = a.AppointmentTime,
                 Notes = a.Notes,
                 Status = a.Status,
                 ParticipantId = a.ParticipantId,
@@ -70,6 +71,7 @@ public class AppointmentsController : ControllerBase
         var appointment = new Appointment
         {
             AppointmentDate = appointmentDTO.AppointmentDate,
+            AppointmentTime = appointmentDTO.AppointmentTime,
             Notes = appointmentDTO.Notes,
             Status = appointmentDTO.Status,
             ParticipantId = appointmentDTO.ParticipantId,

@@ -108,14 +108,28 @@ export class AppComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        const formData = result;
+
+        const date = new Date(formData.appointmentDate);
+        const [hours, minutes] = formData.appointmentTime.split(':');
+        date.setHours(+hours, +minutes, 0, 0);
+
+        
+        const localISOString = date.getFullYear() + '-' +
+          String(date.getMonth() + 1).padStart(2, '0') + '-' +
+          String(date.getDate()).padStart(2, '0') + 'T' +
+          String(date.getHours()).padStart(2, '0') + ':' +
+          String(date.getMinutes()).padStart(2, '0') + ':00';
+
         const newAppointment: AppointmentDTO = {
-          appointmentDate: new Date(result.appointmentDate).toISOString(),
-          notes: result.notes || '',
+          appointmentDate: localISOString,
+          appointmentTime: formData.appointmentTime,
+          notes: formData.notes || '',
           status: 'scheduled',
-          participantId: result.participantId,
-          doctorId: result.doctorId,
-          trialId: result.trialId
-        };
+          participantId: formData.participantId,
+          doctorId: formData.doctorId,
+          trialId: formData.trialId
+      };
   
         console.log('Sending appointment:', newAppointment);
         this.apiService.addAppointment(newAppointment).subscribe({

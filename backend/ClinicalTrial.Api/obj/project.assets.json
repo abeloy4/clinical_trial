@@ -3688,11 +3688,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/student/Desktop/Clinical_Trial/backend/ClinicalTrial.Api/ClinicalTrial.Api.csproj",
+      "projectUniqueName": "/Users/student/Desktop/TrialClinic/clinical_trial/backend/ClinicalTrial.Api/ClinicalTrial.Api.csproj",
       "projectName": "ClinicalTrial.Api",
-      "projectPath": "/Users/student/Desktop/Clinical_Trial/backend/ClinicalTrial.Api/ClinicalTrial.Api.csproj",
+      "projectPath": "/Users/student/Desktop/TrialClinic/clinical_trial/backend/ClinicalTrial.Api/ClinicalTrial.Api.csproj",
       "packagesPath": "/Users/student/.nuget/packages/",
-      "outputPath": "/Users/student/Desktop/Clinical_Trial/backend/ClinicalTrial.Api/obj/",
+      "outputPath": "/Users/student/Desktop/TrialClinic/clinical_trial/backend/ClinicalTrial.Api/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/student/.nuget/NuGet/NuGet.Config"

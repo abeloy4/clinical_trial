@@ -4,6 +4,7 @@ public class AppointmentViewDTO
 {
     public int Id { get; set; }
     public DateTime AppointmentDate { get; set; }
+    public string AppointmentTime { get; set; } = string.Empty;
     public string? Notes { get; set; }
     public string Status { get; set; }
 

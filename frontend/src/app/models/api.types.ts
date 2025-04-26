@@ -27,6 +27,7 @@ export interface Participant {
 export interface Appointment {
   id: number;
   appointmentDate: string;
+  appointmentTime: string;
   notes?: string;
   status: string;
   participantId: number;
@@ -46,6 +47,7 @@ export interface DisplayAppointment {
 export interface AppointmentDTO {
   id?: number; // optional during creation
   appointmentDate: string;
+  appointmentTime: string;
   notes?: string;
   status: string;
   participantId: number;
@@ -55,6 +57,7 @@ export interface AppointmentDTO {
 export interface AppointmentViewDTO {
   id: number;
   appointmentDate: string;
+  appointmentTime: string;
   notes?: string;
   status: string;
   participantId: number;
