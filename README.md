@@ -10,7 +10,7 @@ A full-stack web application to manage **Doctors**, **Participants**, **Trials**
 ## 📺 Demo
 
 **Clinical Trial Management System** – April 2025  
-[🎥 Watch Demo Video](#) *(Add video link here)*
+[🎥 Watch Demo Video](#) *([Add video link here](https://www.loom.com/share/c810364cd6d841e0b24971e3c0c84b12?sid=6772322e-2b77-49d4-8f01-965ad763763c))*
 
 ---
 
@@ -34,7 +34,7 @@ A full-stack web application to manage **Doctors**, **Participants**, **Trials**
 _Landing view with total stats for Doctors, Trials, Participants, Appointments_
 
 ### Add Trial Dialog
-<img width="800" alt="image" src="https://github.com/user-attachments/assets/7241b0fa-2631-4846-b816-ca414ea157eb" />
+<img width="550" alt="image" src="https://github.com/user-attachments/assets/7241b0fa-2631-4846-b816-ca414ea157eb" />
 
 _A form to create a new clinical trial, including trial name, description, start date, and end date._
 
@@ -107,13 +107,6 @@ _A sortable, searchable, and paginated table displaying all scheduled appointmen
 | Database  | SQLite                           |
 | Styling   | SCSS / Angular Material          |
 | API Docs  | Swagger                          |
-
----
-
-## 🔐 Role-Based Access
-
-- **Admin** – Full access to manage doctors, participants, trials, and appointments  
-- **Patient (coming soon)** – View own appointments
 
 ---
 
