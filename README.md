@@ -10,10 +10,6 @@ A full-stack web application to manage **Doctors**, **Participants**, **Trials**
 # Clinical Trial Management - Watch Video 🎥
 [Clinical Trial Management - Watch Video](https://www.loom.com/share/c810364cd6d841e0b24971e3c0c84b12?sid=6772322e-2b77-49d4-8f01-965ad763763c)
 
-<iframe src="https://www.loom.com/embed/c810364cd6d841e0b24971e3c0c84b12?sid=6772322e-2b77-49d4-8f01-965ad763763c" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen width="640" height="360"></iframe>
-
-
-
 ---
 
 ## ✨ Features
