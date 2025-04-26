@@ -2,7 +2,7 @@
 
 A full-stack web application to manage **Doctors**, **Participants**, **Trials**, and **Appointments** for clinical research teams. Built with **Angular** and **.NET**, it features intuitive scheduling, clean UI, and real-time updates.
 
-<img width="1420" alt="image" src="https://github.com/user-attachments/assets/24980b13-c119-44ca-a494-27709ab5d087" />
+<img width="800" alt="image" src="https://github.com/user-attachments/assets/24980b13-c119-44ca-a494-27709ab5d087" />
 
 
 ---
@@ -88,6 +88,9 @@ _A sortable, searchable, and paginated table displaying all scheduled appointmen
    dotnet ef database update
    dotnet run
    ```
+- **API BaseB URL:** [https://localhost:7050](https://localhost:7050)
+- **Swagger Documentation:** [https://localhost:7050/swagger](https://localhost:7050/swagger)
+
 
 ### 3. Frontend Setup
 
@@ -97,6 +100,7 @@ _A sortable, searchable, and paginated table displaying all scheduled appointmen
    dotnet ef database update
    dotnet run
    ```
+- **Frontend URL:** [https://localhost:7050](https://localhost:4200)
 
 ## 🧰 Technology Stack
 
