@@ -34,7 +34,7 @@ A full-stack web application to manage **Doctors**, **Participants**, **Trials**
 _Landing view with total stats for Doctors, Trials, Participants, Appointments_
 
 ### Add Trial Dialog
-<img width="529" alt="image" src="https://github.com/user-attachments/assets/7241b0fa-2631-4846-b816-ca414ea157eb" />
+<img width="800" alt="image" src="https://github.com/user-attachments/assets/7241b0fa-2631-4846-b816-ca414ea157eb" />
 
 _A form to create a new clinical trial, including trial name, description, start date, and end date._
 
@@ -44,17 +44,17 @@ _A form to create a new clinical trial, including trial name, description, start
 _A form to register a doctor with specialization and trial assignment._
 
 ### Add Participant Dialog
-<img width="532" alt="image" src="https://github.com/user-attachments/assets/1886c796-bb21-454e-913b-fda96bc62fad" />
+<img width="800" alt="image" src="https://github.com/user-attachments/assets/1886c796-bb21-454e-913b-fda96bc62fad" />
 
 _A form to add a participant with full medical history and trial enrollment._
 
 ### Schedule Appointment Dialog
-<img width="524" alt="image" src="https://github.com/user-attachments/assets/97c3c597-6a21-46d3-8e01-861f2558b8b9" />
+<img width="800" alt="image" src="https://github.com/user-attachments/assets/97c3c597-6a21-46d3-8e01-861f2558b8b9" />
 
 _A form to schedule appointments by selecting participant, doctor, time, date, and optional location._
 
 ### Appointments Table
-<img width="927" alt="image" src="https://github.com/user-attachments/assets/e08ada97-5f24-4931-ab2f-faa9d4d1c240" />
+<img width="800" alt="image" src="https://github.com/user-attachments/assets/e08ada97-5f24-4931-ab2f-faa9d4d1c240" />
 
 _A sortable, searchable, and paginated table displaying all scheduled appointments with edit and delete functionality._
 
