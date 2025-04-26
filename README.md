@@ -7,7 +7,7 @@ A full-stack web application to manage **Doctors**, **Participants**, **Trials**
 ## 📺 Demo
 
 ## **Clinical Trial Management System** – April 2025  
-[🎥 Watch Demo Video] [https://www.loom.com/share/c810364cd6d841e0b24971e3c0c84b12?sid=6772322e-2b77-49d4-8f01-965ad763763c]
+[🎥 Watch Demo Video] ([https://www.loom.com/share/c810364cd6d841e0b24971e3c0c84b12?sid=6772322e-2b77-49d4-8f01-965ad763763c])
 
 ---
 
